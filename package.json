@@ -1,0 +1,36 @@
+{
+  "name": "not-yahoo-answers",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "commit": "git add . && cz",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "apollo-server-micro": "^2.22.2",
+    "next": "latest",
+    "next-auth": "^3.14.0",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.33.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "autoprefixer": "^10.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "postcss": "^8.2.9",
+    "tailwindcss": "^2.1.1",
+    "typescript": "4.0"
+  },
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
