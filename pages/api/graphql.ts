@@ -1,4 +1,4 @@
-import schema from "../../schema";
+import schema from "../../schema/schema";
 import { ApolloServer } from "apollo-server-micro";
 
 const server = new ApolloServer({

@@ -7,7 +7,12 @@
 
 
 
-
+declare global {
+  interface NexusGenCustomOutputProperties<TypeName extends string> {
+    crud: NexusPrisma<TypeName, 'crud'>
+    model: NexusPrisma<TypeName, 'model'>
+  }
+}
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
@@ -28,11 +33,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  Framework: { // root type
-    id?: string | null; // ID
-    name?: string | null; // String
-  }
   Query: {};
+  Question: { // root type
+    id: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -46,22 +50,20 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  Framework: { // field return type
-    id: string | null; // ID
-    name: string | null; // String
-  }
   Query: { // field return type
-    frameworks: Array<NexusGenRootTypes['Framework'] | null> | null; // [Framework]
+    ok: boolean; // Boolean!
+  }
+  Question: { // field return type
+    id: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  Framework: { // field return type name
-    id: 'ID'
-    name: 'String'
-  }
   Query: { // field return type name
-    frameworks: 'Framework'
+    ok: 'Boolean'
+  }
+  Question: { // field return type name
+    id: 'String'
   }
 }
 
