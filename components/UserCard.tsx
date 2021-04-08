@@ -1,20 +1,39 @@
 import { useSession } from "next-auth/client";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 export const UserCard = () => {
   const [session] = useSession();
 
   return (
-    <aside className="w-1/3 col-span-4 px-5 py-4 space-y-4 bg-gray-100 rounded-md">
-      <div className="flex items-center space-x-2">
-        <img
-          src={session?.user?.image}
-          alt={`${session?.user?.name}'s avatar`}
-          className="w-12 h-12 rounded-full"
-        />
-        <p className="font-bold">Dane</p>
-      </div>
-      <p className="text-xs font-semibold uppercase">Questions answered: 400</p>
-      <p className="text-xs font-semibold uppercase">Upvotes: 2342</p>
+    <aside className="sticky top-[10px] max-h-52 flex flex-col items-end space-y-4">
+      {session ? (
+        <>
+          {" "}
+          <div className="flex items-center space-x-2">
+            <img
+              src={session?.user?.image}
+              alt={`${session?.user?.name}'s avatar`}
+              className="w-12 h-12 rounded-full"
+            />
+            <div>
+              <p className="text-sm font-bold uppercase">
+                {session?.user?.name}
+              </p>
+              <div
+                className="flex text-xs font-semibold uppercase"
+                title="Total Answer Upvotes"
+              >
+                <HiOutlineLightBulb className="w-6 h-6 text-purple-700" />
+                <span className="block text-lg text-purple-700">400</span>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="text-purple-700 ">Sign in to answer questions</p>
+        </>
+      )}
     </aside>
   );
 };

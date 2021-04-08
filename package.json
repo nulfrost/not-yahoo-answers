@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^2.19.0",
     "@reach/dialog": "^0.15.0",
+    "@tailwindcss/forms": "^0.3.2",
     "apollo-server-micro": "^2.22.2",
     "next": "latest",
     "next-auth": "^3.14.0",

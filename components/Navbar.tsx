@@ -15,10 +15,10 @@ export const Navbar = () => {
 
   return (
     <header>
-      <nav className="px-5 py-4 bg-gray-100">
-        <div className="flex items-center justify-between max-w-[1440px] mx-auto">
+      <nav className="px-5 py-4">
+        <div className="flex items-center justify-between max-w-6xl gap-3 mx-auto">
           <h1 className="text-3xl font-bold text-purple-700">NYA</h1>
-          <ul className="flex space-x-3 font-semibold">
+          <ul className="flex justify-end space-x-3 font-semibold">
             {session ? (
               <>
                 <button
@@ -34,7 +34,7 @@ export const Navbar = () => {
                   />
                 </button>
                 <div
-                  className={`absolute top-[60px] right-[130px] bg-gray-100 shadow-md border border-purple-700 py-2 px-4 hover:bg-gray-300 duration-150 cursor-pointer ${
+                  className={`absolute top-[60px] bg-gray-100 shadow-md border border-purple-700 py-2 px-4 hover:bg-gray-300 duration-150 cursor-pointer ${
                     showDropdown ? "block" : "hidden"
                   }`}
                 >
