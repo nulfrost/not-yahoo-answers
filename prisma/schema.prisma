@@ -53,6 +53,7 @@ model User {
   Questions Question[]
   Answers   Answer[]
   @@map(name: "users")
+  Question Question[] @relation("QuestionAuthor")
 }
 
 model VerificationRequest {
@@ -72,12 +73,15 @@ model Question {
   question  String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation("QuestionAuthor", fields: [authorId], references: [id])
   authorId  Int
   answers   Answer[]
 
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?
+
+  upvote User @relation(fields: [userId], references: [id])
+  userId Int
   @@map(name: "questions")
 }
 
