@@ -6,8 +6,8 @@ export const Question = objectType({
     t.model.id();
     t.model.title();
     t.model.question();
-    t.model.answer();
-    t.model.category();
+    t.model.answers();
+    t.model.Category();
     t.model.createdAt();
   },
 });

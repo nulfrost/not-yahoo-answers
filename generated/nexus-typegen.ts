@@ -20,11 +20,11 @@ declare global {
 
 export interface NexusGenInputs {
   AnswerCreateInput: { // input type
-    Question?: NexusGenInputs['QuestionCreateNestedOneWithoutAnswerInput'] | null; // QuestionCreateNestedOneWithoutAnswerInput
     answer: string; // String!
     author: NexusGenInputs['UserCreateNestedOneWithoutAnswersInput']; // UserCreateNestedOneWithoutAnswersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
+    question?: NexusGenInputs['QuestionCreateNestedOneWithoutAnswersInput'] | null; // QuestionCreateNestedOneWithoutAnswersInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   AnswerCreateNestedManyWithoutAuthorInput: { // input type
@@ -46,10 +46,10 @@ export interface NexusGenInputs {
     where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
   AnswerCreateWithoutAuthorInput: { // input type
-    Question?: NexusGenInputs['QuestionCreateNestedOneWithoutAnswerInput'] | null; // QuestionCreateNestedOneWithoutAnswerInput
     answer: string; // String!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
+    question?: NexusGenInputs['QuestionCreateNestedOneWithoutAnswersInput'] | null; // QuestionCreateNestedOneWithoutAnswersInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   AnswerCreateWithoutQuestionInput: { // input type
@@ -76,11 +76,11 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   AnswerUpdateInput: { // input type
-    Question?: NexusGenInputs['QuestionUpdateOneWithoutAnswerInput'] | null; // QuestionUpdateOneWithoutAnswerInput
     answer?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     author?: NexusGenInputs['UserUpdateOneRequiredWithoutAnswersInput'] | null; // UserUpdateOneRequiredWithoutAnswersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    question?: NexusGenInputs['QuestionUpdateOneWithoutAnswersInput'] | null; // QuestionUpdateOneWithoutAnswersInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   AnswerUpdateManyMutationInput: { // input type
@@ -130,10 +130,10 @@ export interface NexusGenInputs {
     where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
   AnswerUpdateWithoutAuthorInput: { // input type
-    Question?: NexusGenInputs['QuestionUpdateOneWithoutAnswerInput'] | null; // QuestionUpdateOneWithoutAnswerInput
     answer?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    question?: NexusGenInputs['QuestionUpdateOneWithoutAnswersInput'] | null; // QuestionUpdateOneWithoutAnswersInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   AnswerUpdateWithoutQuestionInput: { // input type
@@ -157,16 +157,57 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['AnswerWhereInput'][] | null; // [AnswerWhereInput!]
     NOT?: NexusGenInputs['AnswerWhereInput'][] | null; // [AnswerWhereInput!]
     OR?: NexusGenInputs['AnswerWhereInput'][] | null; // [AnswerWhereInput!]
-    Question?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
     answer?: NexusGenInputs['StringFilter'] | null; // StringFilter
     author?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     authorId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    question?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
     questionId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   AnswerWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  CategoryCreateNestedOneWithoutQuestionsInput: { // input type
+    connect?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CategoryCreateOrConnectWithoutQuestionsInput'] | null; // CategoryCreateOrConnectWithoutQuestionsInput
+    create?: NexusGenInputs['CategoryCreateWithoutQuestionsInput'] | null; // CategoryCreateWithoutQuestionsInput
+  }
+  CategoryCreateOrConnectWithoutQuestionsInput: { // input type
+    create: NexusGenInputs['CategoryCreateWithoutQuestionsInput']; // CategoryCreateWithoutQuestionsInput!
+    where: NexusGenInputs['CategoryWhereUniqueInput']; // CategoryWhereUniqueInput!
+  }
+  CategoryCreateWithoutQuestionsInput: { // input type
+    id?: string | null; // String
+    name: string; // String!
+  }
+  CategoryUpdateOneWithoutQuestionsInput: { // input type
+    connect?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CategoryCreateOrConnectWithoutQuestionsInput'] | null; // CategoryCreateOrConnectWithoutQuestionsInput
+    create?: NexusGenInputs['CategoryCreateWithoutQuestionsInput'] | null; // CategoryCreateWithoutQuestionsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['CategoryUpdateWithoutQuestionsInput'] | null; // CategoryUpdateWithoutQuestionsInput
+    upsert?: NexusGenInputs['CategoryUpsertWithoutQuestionsInput'] | null; // CategoryUpsertWithoutQuestionsInput
+  }
+  CategoryUpdateWithoutQuestionsInput: { // input type
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  CategoryUpsertWithoutQuestionsInput: { // input type
+    create: NexusGenInputs['CategoryCreateWithoutQuestionsInput']; // CategoryCreateWithoutQuestionsInput!
+    update: NexusGenInputs['CategoryUpdateWithoutQuestionsInput']; // CategoryUpdateWithoutQuestionsInput!
+  }
+  CategoryWhereInput: { // input type
+    AND?: NexusGenInputs['CategoryWhereInput'][] | null; // [CategoryWhereInput!]
+    NOT?: NexusGenInputs['CategoryWhereInput'][] | null; // [CategoryWhereInput!]
+    OR?: NexusGenInputs['CategoryWhereInput'][] | null; // [CategoryWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    questions?: NexusGenInputs['QuestionListRelationFilter'] | null; // QuestionListRelationFilter
+  }
+  CategoryWhereUniqueInput: { // input type
     id?: string | null; // String
   }
   DateTimeFieldUpdateOperationsInput: { // input type
@@ -191,15 +232,6 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['DateTime'] | null; // DateTime
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  EnumCategoryFieldUpdateOperationsInput: { // input type
-    set?: NexusGenEnums['Category'] | null; // Category
-  }
-  EnumCategoryFilter: { // input type
-    equals?: NexusGenEnums['Category'] | null; // Category
-    in?: NexusGenEnums['Category'][] | null; // [Category!]
-    not?: NexusGenInputs['NestedEnumCategoryFilter'] | null; // NestedEnumCategoryFilter
-    notIn?: NexusGenEnums['Category'][] | null; // [Category!]
   }
   IntFilter: { // input type
     equals?: number | null; // Int
@@ -230,12 +262,6 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['DateTime'] | null; // DateTime
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
-  }
-  NestedEnumCategoryFilter: { // input type
-    equals?: NexusGenEnums['Category'] | null; // Category
-    in?: NexusGenEnums['Category'][] | null; // [Category!]
-    not?: NexusGenInputs['NestedEnumCategoryFilter'] | null; // NestedEnumCategoryFilter
-    notIn?: NexusGenEnums['Category'][] | null; // [Category!]
   }
   NestedIntFilter: { // input type
     equals?: number | null; // Int
@@ -280,9 +306,9 @@ export interface NexusGenInputs {
     set?: string | null; // String
   }
   QuestionCreateInput: { // input type
-    answer?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
+    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutQuestionsInput'] | null; // CategoryCreateNestedOneWithoutQuestionsInput
+    answers?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
     author: NexusGenInputs['UserCreateNestedOneWithoutQuestionsInput']; // UserCreateNestedOneWithoutQuestionsInput!
-    category: NexusGenEnums['Category']; // Category!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     question: string; // String!
@@ -294,22 +320,22 @@ export interface NexusGenInputs {
     connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutAuthorInput'][] | null; // [QuestionCreateOrConnectWithoutAuthorInput!]
     create?: NexusGenInputs['QuestionCreateWithoutAuthorInput'][] | null; // [QuestionCreateWithoutAuthorInput!]
   }
-  QuestionCreateNestedOneWithoutAnswerInput: { // input type
+  QuestionCreateNestedOneWithoutAnswersInput: { // input type
     connect?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutAnswerInput'] | null; // QuestionCreateOrConnectWithoutAnswerInput
-    create?: NexusGenInputs['QuestionCreateWithoutAnswerInput'] | null; // QuestionCreateWithoutAnswerInput
+    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutAnswersInput'] | null; // QuestionCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['QuestionCreateWithoutAnswersInput'] | null; // QuestionCreateWithoutAnswersInput
   }
-  QuestionCreateOrConnectWithoutAnswerInput: { // input type
-    create: NexusGenInputs['QuestionCreateWithoutAnswerInput']; // QuestionCreateWithoutAnswerInput!
+  QuestionCreateOrConnectWithoutAnswersInput: { // input type
+    create: NexusGenInputs['QuestionCreateWithoutAnswersInput']; // QuestionCreateWithoutAnswersInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
   QuestionCreateOrConnectWithoutAuthorInput: { // input type
     create: NexusGenInputs['QuestionCreateWithoutAuthorInput']; // QuestionCreateWithoutAuthorInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
-  QuestionCreateWithoutAnswerInput: { // input type
+  QuestionCreateWithoutAnswersInput: { // input type
+    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutQuestionsInput'] | null; // CategoryCreateNestedOneWithoutQuestionsInput
     author: NexusGenInputs['UserCreateNestedOneWithoutQuestionsInput']; // UserCreateNestedOneWithoutQuestionsInput!
-    category: NexusGenEnums['Category']; // Category!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     question: string; // String!
@@ -317,8 +343,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   QuestionCreateWithoutAuthorInput: { // input type
-    answer?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
-    category: NexusGenEnums['Category']; // Category!
+    Category?: NexusGenInputs['CategoryCreateNestedOneWithoutQuestionsInput'] | null; // CategoryCreateNestedOneWithoutQuestionsInput
+    answers?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
     question: string; // String!
@@ -332,7 +358,7 @@ export interface NexusGenInputs {
   }
   QuestionOrderByInput: { // input type
     authorId?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    category?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    categoryId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     question?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -344,7 +370,7 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['QuestionScalarWhereInput'][] | null; // [QuestionScalarWhereInput!]
     OR?: NexusGenInputs['QuestionScalarWhereInput'][] | null; // [QuestionScalarWhereInput!]
     authorId?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    category?: NexusGenInputs['EnumCategoryFilter'] | null; // EnumCategoryFilter
+    categoryId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     question?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -352,9 +378,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   QuestionUpdateInput: { // input type
-    answer?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
+    Category?: NexusGenInputs['CategoryUpdateOneWithoutQuestionsInput'] | null; // CategoryUpdateOneWithoutQuestionsInput
+    answers?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
     author?: NexusGenInputs['UserUpdateOneRequiredWithoutQuestionsInput'] | null; // UserUpdateOneRequiredWithoutQuestionsInput
-    category?: NexusGenInputs['EnumCategoryFieldUpdateOperationsInput'] | null; // EnumCategoryFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     question?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -362,7 +388,6 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   QuestionUpdateManyMutationInput: { // input type
-    category?: NexusGenInputs['EnumCategoryFieldUpdateOperationsInput'] | null; // EnumCategoryFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     question?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -385,22 +410,22 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['QuestionUpdateManyWithWhereWithoutAuthorInput'][] | null; // [QuestionUpdateManyWithWhereWithoutAuthorInput!]
     upsert?: NexusGenInputs['QuestionUpsertWithWhereUniqueWithoutAuthorInput'][] | null; // [QuestionUpsertWithWhereUniqueWithoutAuthorInput!]
   }
-  QuestionUpdateOneWithoutAnswerInput: { // input type
+  QuestionUpdateOneWithoutAnswersInput: { // input type
     connect?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutAnswerInput'] | null; // QuestionCreateOrConnectWithoutAnswerInput
-    create?: NexusGenInputs['QuestionCreateWithoutAnswerInput'] | null; // QuestionCreateWithoutAnswerInput
+    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutAnswersInput'] | null; // QuestionCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['QuestionCreateWithoutAnswersInput'] | null; // QuestionCreateWithoutAnswersInput
     delete?: boolean | null; // Boolean
     disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['QuestionUpdateWithoutAnswerInput'] | null; // QuestionUpdateWithoutAnswerInput
-    upsert?: NexusGenInputs['QuestionUpsertWithoutAnswerInput'] | null; // QuestionUpsertWithoutAnswerInput
+    update?: NexusGenInputs['QuestionUpdateWithoutAnswersInput'] | null; // QuestionUpdateWithoutAnswersInput
+    upsert?: NexusGenInputs['QuestionUpsertWithoutAnswersInput'] | null; // QuestionUpsertWithoutAnswersInput
   }
   QuestionUpdateWithWhereUniqueWithoutAuthorInput: { // input type
     data: NexusGenInputs['QuestionUpdateWithoutAuthorInput']; // QuestionUpdateWithoutAuthorInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
-  QuestionUpdateWithoutAnswerInput: { // input type
+  QuestionUpdateWithoutAnswersInput: { // input type
+    Category?: NexusGenInputs['CategoryUpdateOneWithoutQuestionsInput'] | null; // CategoryUpdateOneWithoutQuestionsInput
     author?: NexusGenInputs['UserUpdateOneRequiredWithoutQuestionsInput'] | null; // UserUpdateOneRequiredWithoutQuestionsInput
-    category?: NexusGenInputs['EnumCategoryFieldUpdateOperationsInput'] | null; // EnumCategoryFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     question?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -408,8 +433,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   QuestionUpdateWithoutAuthorInput: { // input type
-    answer?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
-    category?: NexusGenInputs['EnumCategoryFieldUpdateOperationsInput'] | null; // EnumCategoryFieldUpdateOperationsInput
+    Category?: NexusGenInputs['CategoryUpdateOneWithoutQuestionsInput'] | null; // CategoryUpdateOneWithoutQuestionsInput
+    answers?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     question?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -421,18 +446,19 @@ export interface NexusGenInputs {
     update: NexusGenInputs['QuestionUpdateWithoutAuthorInput']; // QuestionUpdateWithoutAuthorInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
-  QuestionUpsertWithoutAnswerInput: { // input type
-    create: NexusGenInputs['QuestionCreateWithoutAnswerInput']; // QuestionCreateWithoutAnswerInput!
-    update: NexusGenInputs['QuestionUpdateWithoutAnswerInput']; // QuestionUpdateWithoutAnswerInput!
+  QuestionUpsertWithoutAnswersInput: { // input type
+    create: NexusGenInputs['QuestionCreateWithoutAnswersInput']; // QuestionCreateWithoutAnswersInput!
+    update: NexusGenInputs['QuestionUpdateWithoutAnswersInput']; // QuestionUpdateWithoutAnswersInput!
   }
   QuestionWhereInput: { // input type
     AND?: NexusGenInputs['QuestionWhereInput'][] | null; // [QuestionWhereInput!]
+    Category?: NexusGenInputs['CategoryWhereInput'] | null; // CategoryWhereInput
     NOT?: NexusGenInputs['QuestionWhereInput'][] | null; // [QuestionWhereInput!]
     OR?: NexusGenInputs['QuestionWhereInput'][] | null; // [QuestionWhereInput!]
-    answer?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
+    answers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
     author?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     authorId?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    category?: NexusGenInputs['EnumCategoryFilter'] | null; // EnumCategoryFilter
+    categoryId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     question?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -570,7 +596,6 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  Category: "ART" | "BEAUTY" | "BUSINESS" | "CARS" | "COMPUTERS" | "EDUCATION" | "ENVIRONMENT" | "FAMILY" | "FOOD" | "GAMES" | "GARDEN" | "HEALTH" | "NEWS" | "PARENTING" | "PETS" | "POLITICS" | "SCIENCE" | "SOCIETY" | "SPORTS" | "TRAVEL"
   QueryMode: "default" | "insensitive"
   SortOrder: "asc" | "desc"
 }
@@ -591,10 +616,13 @@ export interface NexusGenObjects {
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
+  Category: { // root type
+    id: string; // String!
+    name: string; // String!
+  }
   Mutation: {};
   Query: {};
   Question: { // root type
-    category: NexusGenEnums['Category']; // Category!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     question: string; // String!
@@ -620,12 +648,17 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   Answer: { // field return type
-    Question: NexusGenRootTypes['Question'] | null; // Question
     answer: string; // String!
     author: NexusGenRootTypes['User']; // User!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    question: NexusGenRootTypes['Question'] | null; // Question
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Category: { // field return type
+    id: string; // String!
+    name: string; // String!
+    questions: NexusGenRootTypes['Question'][]; // [Question!]!
   }
   Mutation: { // field return type
     createOneAnswer: NexusGenRootTypes['Answer']; // Answer!
@@ -636,12 +669,14 @@ export interface NexusGenFieldTypes {
     updateOneQuestion: NexusGenRootTypes['Question'] | null; // Question
   }
   Query: { // field return type
+    categories: NexusGenRootTypes['Category'][]; // [Category!]!
+    category: NexusGenRootTypes['Category'] | null; // Category
     question: NexusGenRootTypes['Question'] | null; // Question
     questions: NexusGenRootTypes['Question'][]; // [Question!]!
   }
   Question: { // field return type
-    answer: NexusGenRootTypes['Answer'][]; // [Answer!]!
-    category: NexusGenEnums['Category']; // Category!
+    Category: NexusGenRootTypes['Category'] | null; // Category
+    answers: NexusGenRootTypes['Answer'][]; // [Answer!]!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     question: string; // String!
@@ -657,12 +692,17 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Answer: { // field return type name
-    Question: 'Question'
     answer: 'String'
     author: 'User'
     createdAt: 'DateTime'
     id: 'String'
+    question: 'Question'
     updatedAt: 'DateTime'
+  }
+  Category: { // field return type name
+    id: 'String'
+    name: 'String'
+    questions: 'Question'
   }
   Mutation: { // field return type name
     createOneAnswer: 'Answer'
@@ -673,12 +713,14 @@ export interface NexusGenFieldTypeNames {
     updateOneQuestion: 'Question'
   }
   Query: { // field return type name
+    categories: 'Category'
+    category: 'Category'
     question: 'Question'
     questions: 'Question'
   }
   Question: { // field return type name
-    answer: 'Answer'
-    category: 'Category'
+    Category: 'Category'
+    answers: 'Answer'
     createdAt: 'DateTime'
     id: 'String'
     question: 'String'
@@ -693,6 +735,14 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Category: {
+    questions: { // args
+      after?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
+      before?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Mutation: {
     createOneAnswer: { // args
       data: NexusGenInputs['AnswerCreateInput']; // AnswerCreateInput!
@@ -716,6 +766,15 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    categories: { // args
+      after?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
+      before?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    category: { // args
+      where: NexusGenInputs['CategoryWhereUniqueInput']; // CategoryWhereUniqueInput!
+    }
     question: { // args
       where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
     }
@@ -729,7 +788,7 @@ export interface NexusGenArgTypes {
     }
   }
   Question: {
-    answer: { // args
+    answers: { // args
       after?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
       before?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
       first?: number | null; // Int

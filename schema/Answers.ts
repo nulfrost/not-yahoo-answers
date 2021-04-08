@@ -8,7 +8,7 @@ export const Answer = objectType({
     t.model.createdAt();
     t.model.author();
     t.model.updatedAt();
-    t.model.Question();
+    t.model.question();
   },
 });
 
