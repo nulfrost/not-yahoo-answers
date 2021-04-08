@@ -15,8 +15,8 @@ export const Navbar = () => {
 
   return (
     <header>
-      <nav className="py-4 bg-gray-100">
-        <div className="flex items-center justify-between max-w-5xl mx-auto">
+      <nav className="px-5 py-4 bg-gray-100">
+        <div className="flex items-center justify-between max-w-[1440px] mx-auto">
           <h1 className="text-3xl font-bold text-purple-700">NYA</h1>
           <ul className="flex space-x-3 font-semibold">
             {session ? (

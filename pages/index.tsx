@@ -1,11 +1,15 @@
 import { Layout } from "components/Layout";
-import { Sidebar } from "components/Sidebar";
+import { Categories } from "components/Categories";
 import { QuestionCard } from "components/QuestionCard";
+import { UserCard } from "components/UserCard";
 
 const IndexPage = () => (
-  <Layout title="Home" className="flex">
-    <Sidebar />
-    <QuestionCard />
+  <Layout title="Home">
+    <div className="max-w-[1440px] mx-auto  flex gap-10">
+      <Categories />
+      <QuestionCard />
+      <UserCard />
+    </div>
   </Layout>
 );
 

@@ -1,12 +1,12 @@
 export const QuestionCard = () => {
   return (
-    <article>
-      <h2>This is a post title</h2>
+    <article className="flex flex-col w-2/3 max-w-3xl px-5 py-4 bg-gray-100 rounded-md">
+      <h2 className="mb-5 text-sm font-bold uppercase">This is a post title</h2>
       <p>
         This is the post content, some very random stuff are written here so
         don't mind it
       </p>
-      <footer>date and stuff here</footer>
+      <footer className="mt-auto">date and stuff here</footer>
     </article>
   );
 };
