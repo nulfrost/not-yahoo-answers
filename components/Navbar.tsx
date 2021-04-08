@@ -1,19 +1,51 @@
 import Link from "next/link";
+import { Dialog } from "@reach/dialog";
+import "@reach/dialog/styles.css";
+import { useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import { signIn } from "next-auth/client";
 
-export const Navbar = () => (
-  <nav className="bg-gray-100 py-4 shadow-md">
-    <div className="max-w-5xl mx-auto flex justify-between items-center">
-      <h1 className="font-bold text-3xl text-purple-700">NYA</h1>
-      <ul className="flex space-x-3 font-semibold">
-        <li className="opacity-75 text-purple-700 hover:opacity-100 duration-150">
-          Sign In
-        </li>
-        <li className="opacity-75 text-purple-700 hover:opacity-100 duration-150">
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </li>
-      </ul>
-    </div>
-  </nav>
-);
+export const Navbar = () => {
+  const [showDialog, setShowDialog] = useState(false);
+  const open = () => setShowDialog(true);
+  const close = () => setShowDialog(false);
+
+  return (
+    <nav className="py-4 bg-gray-100 shadow-md">
+      <div className="flex items-center justify-between max-w-5xl mx-auto">
+        <h1 className="text-3xl font-bold text-purple-700">NYA</h1>
+        <ul className="flex space-x-3 font-semibold">
+          <li
+            className="text-purple-700 duration-150 opacity-75 cursor-pointer hover:opacity-100"
+            onClick={open}
+          >
+            Sign In
+          </li>
+          <li className="text-purple-700 duration-150 opacity-75 hover:opacity-100">
+            <Link href="/about">
+              <a>About</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <Dialog
+        isOpen={showDialog}
+        onDismiss={close}
+        className="relative flex flex-col items-center max-w-md rounded"
+        aria-label="Sign in modal for Not Yahoo Answers"
+      >
+        <IoMdClose
+          className="absolute top-[10px] right-[10px] cursor-pointer"
+          onClick={close}
+        />
+        <p className="mb-5 text-2xl font-bold text-purple-700">NYA</p>
+        <button
+          className="px-4 py-3 font-bold text-white duration-150 bg-black rounded-md hover:bg-gray-700"
+          onClick={() => signIn("github")}
+        >
+          Sign in with Github
+        </button>
+      </Dialog>
+    </nav>
+  );
+};
