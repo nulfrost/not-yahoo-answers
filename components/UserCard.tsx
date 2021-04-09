@@ -5,7 +5,7 @@ export const UserCard = () => {
   const [session] = useSession();
 
   return (
-    <aside className="sticky top-[10px] max-h-52 flex flex-col items-end space-y-4">
+    <aside className="lg:sticky lg:top-[10px] lg:h-52 xl:flex flex-col items-end space-y-4 hidden ">
       {session ? (
         <>
           {" "}

@@ -7,8 +7,8 @@ const IndexPage = () => (
   <Layout title="Home">
     <div className="flex-1 max-w-6xl mx-auto">
       <div
-        style={{ display: "grid", gridTemplateColumns: "200px 1fr 200px" }}
-        className="h-full gap-3"
+        style={{ gridTemplateColumns: "200px 1fr 200px" }}
+        className="flex flex-col h-full gap-3 xl:grid"
       >
         <Categories />
         <div className="flex flex-col gap-3 ">
@@ -16,13 +16,13 @@ const IndexPage = () => (
             <input
               type="search"
               name="questionSearch"
-              className="w-full text-sm border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
+              className="w-full text-lg border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
               placeholder="You've got questions, not yahoo answers has answers"
             />
             <select
               name="sort"
               id="sort"
-              className="text-sm border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
+              className="text-lg border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
             >
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
