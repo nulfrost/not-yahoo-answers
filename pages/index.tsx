@@ -11,7 +11,7 @@ const IndexPage = () => (
         className="flex flex-col h-full gap-3 xl:grid"
       >
         <Categories />
-        <div className="flex flex-col gap-3 ">
+        <div className="flex flex-col space-y-3">
           <form className="flex space-x-2 ">
             <input
               type="search"

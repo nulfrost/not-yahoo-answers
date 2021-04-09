@@ -13,7 +13,7 @@ export const Layout = ({ title, children }: LayoutProps) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Navbar />
-    <main className="flex-1 mt-[88px] px-5 xl:px-0">{children}</main>
+    <main className="flex-1 xl:mt-[88px] px-5 xl:px-0">{children}</main>
     <footer className="flex justify-end px-10 py-5 font-semibold">
       <p>Made with 💖 by Dane.</p>
     </footer>

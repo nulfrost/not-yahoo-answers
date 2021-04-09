@@ -61,7 +61,7 @@ export const Navbar = () => {
         <Dialog
           isOpen={showDialog}
           onDismiss={close}
-          className="relative flex flex-col items-center max-w-md rounded"
+          className="relative flex flex-col items-center !w-3/4 xl:max-w-md rounded"
           aria-label="Sign in modal for Not Yahoo Answers"
         >
           <IoMdClose
