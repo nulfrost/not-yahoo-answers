@@ -17,7 +17,9 @@ export const Navbar = () => {
     <header>
       <nav className="px-5 py-4">
         <div className="flex items-center justify-between max-w-6xl gap-3 mx-auto">
-          <h1 className="text-3xl font-bold text-purple-700">NYA</h1>
+          <Link href="/">
+            <a className="text-3xl font-bold text-purple-700">NYA</a>
+          </Link>
           <ul className="flex justify-end space-x-3 font-semibold">
             {session ? (
               <>

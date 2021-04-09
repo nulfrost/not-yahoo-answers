@@ -14,7 +14,7 @@ export const Layout = ({ title, children }: LayoutProps) => (
     </Head>
     <Navbar />
     <main className="flex-1 xl:mt-[88px] px-5 xl:px-0">{children}</main>
-    <footer className="flex justify-end px-10 py-5 font-semibold">
+    <footer className="max-w-6xl px-10 py-5 mx-auto font-semibold">
       <p>Made with 💖 by Dane.</p>
     </footer>
   </>
