@@ -7,7 +7,7 @@ export const Categories = () => {
       <div className="flex space-x-4 text-sm xl:flex-col xl:space-x-0 lg:text-lg">
         {["art", "technology", "business", "parenting", "news"].map(
           (category) => (
-            <Link href={`/${category}`}>
+            <Link href={`/category/${category}`}>
               <a className="font-semibold text-gray-600 duration-150 hover:text-purple-700">
                 {category}
               </a>

@@ -7,13 +7,16 @@
     "start": "next start",
     "commit": "git add . && cz",
     "migrate": "npx prisma migrate dev --name",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.14",
     "@prisma/client": "^2.19.0",
     "@reach/dialog": "^0.15.0",
     "@tailwindcss/forms": "^0.3.2",
     "apollo-server-micro": "^2.22.2",
+    "graphql": "^15.5.0",
     "next": "latest",
     "next-auth": "^3.14.0",
     "nexus": "^1.0.0",
@@ -23,11 +26,17 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.3",
+    "@graphql-codegen/introspection": "1.18.1",
+    "@graphql-codegen/typescript": "1.21.1",
+    "@graphql-codegen/typescript-operations": "1.17.15",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "autoprefixer": "^10.2.5",
     "cz-conventional-changelog": "^3.3.0",
+    "graphql-codegen-apollo-next-ssr": "^1.5.6",
     "postcss": "^8.2.9",
     "prisma": "^2.19.0",
     "tailwindcss": "^2.1.1",
