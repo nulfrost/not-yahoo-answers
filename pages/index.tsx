@@ -4,9 +4,11 @@ import { QuestionCard } from "components/QuestionCard";
 import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
+import { useAllCategoriesQuery } from "generated/graphql";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
+  const { data } = useAllCategoriesQuery();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -31,7 +33,7 @@ const IndexPage = () => {
           style={{ gridTemplateColumns: "200px 1fr 200px" }}
           className="flex flex-col h-full gap-3 xl:grid"
         >
-          <Categories />
+          <Categories categories={data} />
           <div className="flex flex-col space-y-3">
             <form className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0">
               <input

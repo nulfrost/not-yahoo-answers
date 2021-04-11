@@ -1,16 +1,6 @@
-query CategoryWithQuestions {
+query AllCategories {
   categories {
     id
-    questions {
-      id
-      title
-    }
-  }
-}
-
-query Questions {
-  questions {
-    id
-    title
+    name
   }
 }

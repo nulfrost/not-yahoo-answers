@@ -933,103 +933,50 @@ export type UserWhereUniqueInput = {
   email?: Maybe<Scalars['String']>;
 };
 
-export type CategoryWithQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CategoryWithQuestionsQuery = (
+export type AllCategoriesQuery = (
   { __typename?: 'Query' }
   & { categories: Array<(
     { __typename?: 'Category' }
-    & Pick<Category, 'id'>
-    & { questions: Array<(
-      { __typename?: 'Question' }
-      & Pick<Question, 'id' | 'title'>
-    )> }
-  )> }
-);
-
-export type QuestionsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type QuestionsQuery = (
-  { __typename?: 'Query' }
-  & { questions: Array<(
-    { __typename?: 'Question' }
-    & Pick<Question, 'id' | 'title'>
+    & Pick<Category, 'id' | 'name'>
   )> }
 );
 
 
-export const CategoryWithQuestionsDocument = gql`
-    query CategoryWithQuestions {
+export const AllCategoriesDocument = gql`
+    query AllCategories {
   categories {
     id
-    questions {
-      id
-      title
-    }
+    name
   }
 }
     `;
 
 /**
- * __useCategoryWithQuestionsQuery__
+ * __useAllCategoriesQuery__
  *
- * To run a query within a React component, call `useCategoryWithQuestionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useCategoryWithQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useAllCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useCategoryWithQuestionsQuery({
+ * const { data, loading, error } = useAllCategoriesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useCategoryWithQuestionsQuery(baseOptions?: Apollo.QueryHookOptions<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>) {
+export function useAllCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<AllCategoriesQuery, AllCategoriesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>(CategoryWithQuestionsDocument, options);
+        return Apollo.useQuery<AllCategoriesQuery, AllCategoriesQueryVariables>(AllCategoriesDocument, options);
       }
-export function useCategoryWithQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>) {
+export function useAllCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllCategoriesQuery, AllCategoriesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>(CategoryWithQuestionsDocument, options);
+          return Apollo.useLazyQuery<AllCategoriesQuery, AllCategoriesQueryVariables>(AllCategoriesDocument, options);
         }
-export type CategoryWithQuestionsQueryHookResult = ReturnType<typeof useCategoryWithQuestionsQuery>;
-export type CategoryWithQuestionsLazyQueryHookResult = ReturnType<typeof useCategoryWithQuestionsLazyQuery>;
-export type CategoryWithQuestionsQueryResult = Apollo.QueryResult<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>;
-export const QuestionsDocument = gql`
-    query Questions {
-  questions {
-    id
-    title
-  }
-}
-    `;
-
-/**
- * __useQuestionsQuery__
- *
- * To run a query within a React component, call `useQuestionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useQuestionsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useQuestionsQuery(baseOptions?: Apollo.QueryHookOptions<QuestionsQuery, QuestionsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<QuestionsQuery, QuestionsQueryVariables>(QuestionsDocument, options);
-      }
-export function useQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QuestionsQuery, QuestionsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<QuestionsQuery, QuestionsQueryVariables>(QuestionsDocument, options);
-        }
-export type QuestionsQueryHookResult = ReturnType<typeof useQuestionsQuery>;
-export type QuestionsLazyQueryHookResult = ReturnType<typeof useQuestionsLazyQuery>;
-export type QuestionsQueryResult = Apollo.QueryResult<QuestionsQuery, QuestionsQueryVariables>;
+export type AllCategoriesQueryHookResult = ReturnType<typeof useAllCategoriesQuery>;
+export type AllCategoriesLazyQueryHookResult = ReturnType<typeof useAllCategoriesLazyQuery>;
+export type AllCategoriesQueryResult = Apollo.QueryResult<AllCategoriesQuery, AllCategoriesQueryVariables>;

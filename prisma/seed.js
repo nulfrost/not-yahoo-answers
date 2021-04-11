@@ -18,7 +18,18 @@ async function main() {
     "politics",
   ];
 
-  categories.forEach((category) => console.log(category));
+  await prisma.user.deleteMany({});
+
+  const catArray = categories.map(
+    async (category) =>
+      await prisma.category.create({
+        data: {
+          name: category,
+        },
+      })
+  );
+
+  await Promise.all(catArray);
 }
 
 main()
