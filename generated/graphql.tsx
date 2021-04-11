@@ -1,11 +1,10 @@
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -17,20 +16,20 @@ export type Scalars = {
 };
 
 export type Answer = {
-  __typename?: "Answer";
-  id: Scalars["String"];
-  answer: Scalars["String"];
-  createdAt: Scalars["DateTime"];
+  __typename?: 'Answer';
+  id: Scalars['String'];
+  answer: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   author: User;
-  updatedAt: Scalars["DateTime"];
+  updatedAt: Scalars['DateTime'];
   question?: Maybe<Question>;
 };
 
 export type AnswerCreateInput = {
-  id?: Maybe<Scalars["String"]>;
-  answer: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  answer: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserCreateNestedOneWithoutAnswersInput;
   question?: Maybe<QuestionCreateNestedOneWithoutAnswersInput>;
 };
@@ -58,18 +57,18 @@ export type AnswerCreateOrConnectWithoutQuestionInput = {
 };
 
 export type AnswerCreateWithoutAuthorInput = {
-  id?: Maybe<Scalars["String"]>;
-  answer: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  answer: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   question?: Maybe<QuestionCreateNestedOneWithoutAnswersInput>;
 };
 
 export type AnswerCreateWithoutQuestionInput = {
-  id?: Maybe<Scalars["String"]>;
-  answer: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  answer: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserCreateNestedOneWithoutAnswersInput;
 };
 
@@ -196,19 +195,20 @@ export type AnswerWhereInput = {
 };
 
 export type AnswerWhereUniqueInput = {
-  id?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
 };
 
 export type Category = {
-  __typename?: "Category";
-  id: Scalars["String"];
-  name: Scalars["String"];
+  __typename?: 'Category';
+  id: Scalars['String'];
+  name: Scalars['String'];
   questions: Array<Question>;
 };
 
+
 export type CategoryQuestionsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<QuestionWhereUniqueInput>;
   after?: Maybe<QuestionWhereUniqueInput>;
 };
@@ -225,8 +225,8 @@ export type CategoryCreateOrConnectWithoutQuestionsInput = {
 };
 
 export type CategoryCreateWithoutQuestionsInput = {
-  id?: Maybe<Scalars["String"]>;
-  name: Scalars["String"];
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type CategoryUpdateOneWithoutQuestionsInput = {
@@ -234,8 +234,8 @@ export type CategoryUpdateOneWithoutQuestionsInput = {
   connectOrCreate?: Maybe<CategoryCreateOrConnectWithoutQuestionsInput>;
   upsert?: Maybe<CategoryUpsertWithoutQuestionsInput>;
   connect?: Maybe<CategoryWhereUniqueInput>;
-  disconnect?: Maybe<Scalars["Boolean"]>;
-  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   update?: Maybe<CategoryUpdateWithoutQuestionsInput>;
 };
 
@@ -259,48 +259,49 @@ export type CategoryWhereInput = {
 };
 
 export type CategoryWhereUniqueInput = {
-  id?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
 };
 
+
 export type DateTimeFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars["DateTime"]>;
+  set?: Maybe<Scalars['DateTime']>;
 };
 
 export type DateTimeFilter = {
-  equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
+  equals?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeFilter>;
 };
 
 export type DateTimeNullableFilter = {
-  equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
+  equals?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeNullableFilter>;
 };
 
 export type IntFilter = {
-  equals?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
-  gt?: Maybe<Scalars["Int"]>;
-  gte?: Maybe<Scalars["Int"]>;
+  equals?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
   not?: Maybe<NestedIntFilter>;
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   createOneQuestion: Question;
   deleteOneQuestion?: Maybe<Question>;
   updateOneQuestion?: Maybe<Question>;
@@ -309,26 +310,32 @@ export type Mutation = {
   updateOneAnswer?: Maybe<Answer>;
 };
 
+
 export type MutationCreateOneQuestionArgs = {
   data: QuestionCreateInput;
 };
 
+
 export type MutationDeleteOneQuestionArgs = {
   where: QuestionWhereUniqueInput;
 };
+
 
 export type MutationUpdateOneQuestionArgs = {
   data: QuestionUpdateInput;
   where: QuestionWhereUniqueInput;
 };
 
+
 export type MutationCreateOneAnswerArgs = {
   data: AnswerCreateInput;
 };
 
+
 export type MutationDeleteOneAnswerArgs = {
   where: AnswerWhereUniqueInput;
 };
+
 
 export type MutationUpdateOneAnswerArgs = {
   data: AnswerUpdateInput;
@@ -336,134 +343,139 @@ export type MutationUpdateOneAnswerArgs = {
 };
 
 export type NestedDateTimeFilter = {
-  equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
+  equals?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeFilter>;
 };
 
 export type NestedDateTimeNullableFilter = {
-  equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
+  equals?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeNullableFilter>;
 };
 
 export type NestedIntFilter = {
-  equals?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
-  gt?: Maybe<Scalars["Int"]>;
-  gte?: Maybe<Scalars["Int"]>;
+  equals?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
   not?: Maybe<NestedIntFilter>;
 };
 
 export type NestedStringFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
   not?: Maybe<NestedStringFilter>;
 };
 
 export type NestedStringNullableFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
   not?: Maybe<NestedStringNullableFilter>;
 };
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars["DateTime"]>;
+  set?: Maybe<Scalars['DateTime']>;
 };
 
 export type NullableStringFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars["String"]>;
+  set?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   question?: Maybe<Question>;
   questions: Array<Question>;
   categories: Array<Category>;
   category?: Maybe<Category>;
 };
 
+
 export type QueryQuestionArgs = {
   where: QuestionWhereUniqueInput;
 };
 
+
 export type QueryQuestionsArgs = {
   where?: Maybe<QuestionWhereInput>;
   orderBy?: Maybe<Array<QuestionOrderByInput>>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<QuestionWhereUniqueInput>;
   after?: Maybe<QuestionWhereUniqueInput>;
 };
 
+
 export type QueryCategoriesArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<CategoryWhereUniqueInput>;
   after?: Maybe<CategoryWhereUniqueInput>;
 };
+
 
 export type QueryCategoryArgs = {
   where: CategoryWhereUniqueInput;
 };
 
 export enum QueryMode {
-  Default = "default",
-  Insensitive = "insensitive",
+  Default = 'default',
+  Insensitive = 'insensitive'
 }
 
 export type Question = {
-  __typename?: "Question";
-  id: Scalars["String"];
-  title: Scalars["String"];
-  question: Scalars["String"];
+  __typename?: 'Question';
+  id: Scalars['String'];
+  title: Scalars['String'];
+  question: Scalars['String'];
   answers: Array<Answer>;
   Category?: Maybe<Category>;
-  createdAt: Scalars["DateTime"];
+  createdAt: Scalars['DateTime'];
 };
 
+
 export type QuestionAnswersArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<AnswerWhereUniqueInput>;
   after?: Maybe<AnswerWhereUniqueInput>;
 };
 
 export type QuestionCreateInput = {
-  id?: Maybe<Scalars["String"]>;
-  title: Scalars["String"];
-  question: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  question: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserCreateNestedOneWithoutQuestionInput;
   answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
   Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
@@ -504,33 +516,33 @@ export type QuestionCreateOrConnectWithoutUpvoteInput = {
 };
 
 export type QuestionCreateWithoutAnswersInput = {
-  id?: Maybe<Scalars["String"]>;
-  title: Scalars["String"];
-  question: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  question: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserCreateNestedOneWithoutQuestionInput;
   Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
   upvote: UserCreateNestedOneWithoutQuestionsInput;
 };
 
 export type QuestionCreateWithoutAuthorInput = {
-  id?: Maybe<Scalars["String"]>;
-  title: Scalars["String"];
-  question: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  question: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
   Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
   upvote: UserCreateNestedOneWithoutQuestionsInput;
 };
 
 export type QuestionCreateWithoutUpvoteInput = {
-  id?: Maybe<Scalars["String"]>;
-  title: Scalars["String"];
-  question: Scalars["String"];
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  question: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   author: UserCreateNestedOneWithoutQuestionInput;
   answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
   Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
@@ -628,8 +640,8 @@ export type QuestionUpdateOneWithoutAnswersInput = {
   connectOrCreate?: Maybe<QuestionCreateOrConnectWithoutAnswersInput>;
   upsert?: Maybe<QuestionUpsertWithoutAnswersInput>;
   connect?: Maybe<QuestionWhereUniqueInput>;
-  disconnect?: Maybe<Scalars["Boolean"]>;
-  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   update?: Maybe<QuestionUpdateWithoutAnswersInput>;
 };
 
@@ -712,54 +724,54 @@ export type QuestionWhereInput = {
 };
 
 export type QuestionWhereUniqueInput = {
-  id?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
 };
 
 export enum SortOrder {
-  Asc = "asc",
-  Desc = "desc",
+  Asc = 'asc',
+  Desc = 'desc'
 }
 
 export type StringFieldUpdateOperationsInput = {
-  set?: Maybe<Scalars["String"]>;
+  set?: Maybe<Scalars['String']>;
 };
 
 export type StringFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
   mode?: Maybe<QueryMode>;
   not?: Maybe<NestedStringFilter>;
 };
 
 export type StringNullableFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
   mode?: Maybe<QueryMode>;
   not?: Maybe<NestedStringNullableFilter>;
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["Int"];
-  name?: Maybe<Scalars["String"]>;
-  image?: Maybe<Scalars["String"]>;
-  createdAt: Scalars["DateTime"];
+  __typename?: 'User';
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
 };
 
 export type UserCreateNestedOneWithoutAnswersInput = {
@@ -796,34 +808,34 @@ export type UserCreateOrConnectWithoutQuestionsInput = {
 };
 
 export type UserCreateWithoutAnswersInput = {
-  name?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
-  emailVerified?: Maybe<Scalars["DateTime"]>;
-  image?: Maybe<Scalars["String"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  name?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   Questions?: Maybe<QuestionCreateNestedManyWithoutUpvoteInput>;
   Question?: Maybe<QuestionCreateNestedManyWithoutAuthorInput>;
 };
 
 export type UserCreateWithoutQuestionInput = {
-  name?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
-  emailVerified?: Maybe<Scalars["DateTime"]>;
-  image?: Maybe<Scalars["String"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  name?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   Questions?: Maybe<QuestionCreateNestedManyWithoutUpvoteInput>;
   Answers?: Maybe<AnswerCreateNestedManyWithoutAuthorInput>;
 };
 
 export type UserCreateWithoutQuestionsInput = {
-  name?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
-  emailVerified?: Maybe<Scalars["DateTime"]>;
-  image?: Maybe<Scalars["String"]>;
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
+  name?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  emailVerified?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   Answers?: Maybe<AnswerCreateNestedManyWithoutAuthorInput>;
   Question?: Maybe<QuestionCreateNestedManyWithoutAuthorInput>;
 };
@@ -917,6 +929,107 @@ export type UserWhereInput = {
 };
 
 export type UserWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
 };
+
+export type CategoryWithQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoryWithQuestionsQuery = (
+  { __typename?: 'Query' }
+  & { categories: Array<(
+    { __typename?: 'Category' }
+    & Pick<Category, 'id'>
+    & { questions: Array<(
+      { __typename?: 'Question' }
+      & Pick<Question, 'id' | 'title'>
+    )> }
+  )> }
+);
+
+export type QuestionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type QuestionsQuery = (
+  { __typename?: 'Query' }
+  & { questions: Array<(
+    { __typename?: 'Question' }
+    & Pick<Question, 'id' | 'title'>
+  )> }
+);
+
+
+export const CategoryWithQuestionsDocument = gql`
+    query CategoryWithQuestions {
+  categories {
+    id
+    questions {
+      id
+      title
+    }
+  }
+}
+    `;
+
+/**
+ * __useCategoryWithQuestionsQuery__
+ *
+ * To run a query within a React component, call `useCategoryWithQuestionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategoryWithQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategoryWithQuestionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCategoryWithQuestionsQuery(baseOptions?: Apollo.QueryHookOptions<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>(CategoryWithQuestionsDocument, options);
+      }
+export function useCategoryWithQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>(CategoryWithQuestionsDocument, options);
+        }
+export type CategoryWithQuestionsQueryHookResult = ReturnType<typeof useCategoryWithQuestionsQuery>;
+export type CategoryWithQuestionsLazyQueryHookResult = ReturnType<typeof useCategoryWithQuestionsLazyQuery>;
+export type CategoryWithQuestionsQueryResult = Apollo.QueryResult<CategoryWithQuestionsQuery, CategoryWithQuestionsQueryVariables>;
+export const QuestionsDocument = gql`
+    query Questions {
+  questions {
+    id
+    title
+  }
+}
+    `;
+
+/**
+ * __useQuestionsQuery__
+ *
+ * To run a query within a React component, call `useQuestionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQuestionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useQuestionsQuery(baseOptions?: Apollo.QueryHookOptions<QuestionsQuery, QuestionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<QuestionsQuery, QuestionsQueryVariables>(QuestionsDocument, options);
+      }
+export function useQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QuestionsQuery, QuestionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<QuestionsQuery, QuestionsQueryVariables>(QuestionsDocument, options);
+        }
+export type QuestionsQueryHookResult = ReturnType<typeof useQuestionsQuery>;
+export type QuestionsLazyQueryHookResult = ReturnType<typeof useQuestionsLazyQuery>;
+export type QuestionsQueryResult = Apollo.QueryResult<QuestionsQuery, QuestionsQueryVariables>;

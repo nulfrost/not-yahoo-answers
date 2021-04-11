@@ -1,0 +1,16 @@
+query CategoryWithQuestions {
+  categories {
+    id
+    questions {
+      id
+      title
+    }
+  }
+}
+
+query Questions {
+  questions {
+    id
+    title
+  }
+}
