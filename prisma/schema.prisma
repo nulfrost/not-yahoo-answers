@@ -75,7 +75,7 @@ model Question {
   authorId  Int
   answers   Answer[]
 
-  Category   Category? @relation(name: "CategoryToQuestion", fields: [categoryId], references: [id])
+  category   Category? @relation(name: "CategoryToQuestion", fields: [categoryId], references: [id])
   categoryId String?
   @@map(name: "questions")
 }

@@ -1,4 +1,4 @@
-import NextAuth, { InitOptions, Session } from "next-auth";
+import NextAuth, { InitOptions } from "next-auth";
 import Providers from "next-auth/providers";
 import Adapters from "next-auth/adapters";
 import { PrismaClient } from "@prisma/client";
