@@ -1,7 +1,9 @@
 import { Layout } from "components/Layout";
 import { useAllCategoriesQuery } from "generated/graphql";
+import { getSession } from "next-auth/client";
+import { GetServerSideProps } from "next";
 
-const New = () => {
+const New = ({ user }) => {
   const { data } = useAllCategoriesQuery();
 
   return (
@@ -39,7 +41,7 @@ const New = () => {
             id="category"
             className="w-full mb-5 border border-purple-200 rounded xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
           >
-            {data.categories.map((category) => (
+            {data?.categories.map((category) => (
               <option>{category.name}</option>
             ))}
           </select>
@@ -53,6 +55,25 @@ const New = () => {
       </div>
     </Layout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session?.user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      user: session?.user,
+    },
+  };
 };
 
 export default New;
