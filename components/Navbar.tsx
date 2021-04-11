@@ -35,13 +35,23 @@ export const Navbar = () => {
                     className="w-8 h-8 rounded-full"
                   />
                 </button>
-                <div
-                  className={`absolute top-[60px] bg-gray-100 shadow-md border border-purple-700 py-2 px-4 hover:bg-gray-300 duration-150 cursor-pointer ${
+                <ul
+                  className={`absolute top-[60px] bg-gray-100 shadow-md border border-purple-700 z-10 rounded ${
                     showDropdown ? "block" : "hidden"
                   }`}
                 >
-                  <p onClick={() => signOut()}>Sign Out</p>
-                </div>
+                  <li className="px-2 py-3 duration-150 cursor-pointer hover:bg-gray-300">
+                    <Link href="/new">
+                      <a>Create new post</a>
+                    </Link>
+                  </li>
+                  <li
+                    className="px-2 py-3 duration-150 cursor-pointer hover:bg-gray-300"
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </li>
+                </ul>
               </>
             ) : (
               <>

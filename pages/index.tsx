@@ -33,17 +33,17 @@ const IndexPage = () => {
         >
           <Categories />
           <div className="flex flex-col space-y-3">
-            <form className="flex space-x-2 ">
+            <form className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0">
               <input
                 type="search"
                 name="questionSearch"
-                className="w-full text-lg border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
+                className="w-full border border-purple-200 rounded xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
                 placeholder="You've got questions, not yahoo answers has answers"
               />
               <select
                 name="sort"
                 id="sort"
-                className="text-lg border border-purple-200 rounded focus:outline-none focus:ring-purple-700 focus:ring-2"
+                className="w-full border border-purple-200 rounded xl:w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
