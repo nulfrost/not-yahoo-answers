@@ -45,3 +45,20 @@ query SingleQuestion($questionId: String!) {
     }
   }
 }
+
+query CategoryQuestions($categoryId: String!) {
+  category(where: { id: $categoryId }) {
+    questions {
+      id
+      title
+      question
+      createdAt
+      category {
+        name
+      }
+      answers {
+        id
+      }
+    }
+  }
+}

@@ -883,6 +883,29 @@ export type SingleQuestionQuery = (
   )> }
 );
 
+export type CategoryQuestionsQueryVariables = Exact<{
+  categoryId: Scalars['String'];
+}>;
+
+
+export type CategoryQuestionsQuery = (
+  { __typename?: 'Query' }
+  & { category?: Maybe<(
+    { __typename?: 'Category' }
+    & { questions: Array<(
+      { __typename?: 'Question' }
+      & Pick<Question, 'id' | 'title' | 'question' | 'createdAt'>
+      & { category?: Maybe<(
+        { __typename?: 'Category' }
+        & Pick<Category, 'name'>
+      )>, answers: Array<(
+        { __typename?: 'Answer' }
+        & Pick<Answer, 'id'>
+      )> }
+    )> }
+  )> }
+);
+
 
 export const CreateNewQuestionDocument = gql`
     mutation CreateNewQuestion($title: String!, $question: String!, $category: String!, $authorId: Int!) {
@@ -1055,3 +1078,49 @@ export function useSingleQuestionLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type SingleQuestionQueryHookResult = ReturnType<typeof useSingleQuestionQuery>;
 export type SingleQuestionLazyQueryHookResult = ReturnType<typeof useSingleQuestionLazyQuery>;
 export type SingleQuestionQueryResult = Apollo.QueryResult<SingleQuestionQuery, SingleQuestionQueryVariables>;
+export const CategoryQuestionsDocument = gql`
+    query CategoryQuestions($categoryId: String!) {
+  category(where: {id: $categoryId}) {
+    questions {
+      id
+      title
+      question
+      createdAt
+      category {
+        name
+      }
+      answers {
+        id
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useCategoryQuestionsQuery__
+ *
+ * To run a query within a React component, call `useCategoryQuestionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategoryQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategoryQuestionsQuery({
+ *   variables: {
+ *      categoryId: // value for 'categoryId'
+ *   },
+ * });
+ */
+export function useCategoryQuestionsQuery(baseOptions: Apollo.QueryHookOptions<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>(CategoryQuestionsDocument, options);
+      }
+export function useCategoryQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>(CategoryQuestionsDocument, options);
+        }
+export type CategoryQuestionsQueryHookResult = ReturnType<typeof useCategoryQuestionsQuery>;
+export type CategoryQuestionsLazyQueryHookResult = ReturnType<typeof useCategoryQuestionsLazyQuery>;
+export type CategoryQuestionsQueryResult = Apollo.QueryResult<CategoryQuestionsQuery, CategoryQuestionsQueryVariables>;
