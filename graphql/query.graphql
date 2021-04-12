@@ -4,3 +4,43 @@ query AllCategories {
     name
   }
 }
+
+query AllQuestions {
+  questions {
+    id
+    title
+    question
+    createdAt
+    category {
+      name
+    }
+    answers {
+      id
+    }
+  }
+}
+
+query SingleQuestion($questionId: String!) {
+  question(where: { id: $questionId }) {
+    id
+    title
+    question
+    author {
+      id
+      name
+    }
+    createdAt
+    category {
+      name
+    }
+    answers {
+      id
+      answer
+      createdAt
+      author {
+        name
+        image
+      }
+    }
+  }
+}

@@ -369,8 +369,9 @@ enum QueryMode {
 }
 
 type Question {
-  Category: Category
   answers(after: AnswerWhereUniqueInput, before: AnswerWhereUniqueInput, first: Int, last: Int): [Answer!]!
+  author: User!
+  category: Category
   createdAt: DateTime!
   id: String!
   question: String!
@@ -378,9 +379,9 @@ type Question {
 }
 
 input QuestionCreateInput {
-  Category: CategoryCreateNestedOneWithoutQuestionsInput
   answers: AnswerCreateNestedManyWithoutQuestionInput
   author: UserCreateNestedOneWithoutQuestionsInput!
+  category: CategoryCreateNestedOneWithoutQuestionsInput
   createdAt: DateTime
   id: String
   question: String!
@@ -411,8 +412,8 @@ input QuestionCreateOrConnectWithoutAuthorInput {
 }
 
 input QuestionCreateWithoutAnswersInput {
-  Category: CategoryCreateNestedOneWithoutQuestionsInput
   author: UserCreateNestedOneWithoutQuestionsInput!
+  category: CategoryCreateNestedOneWithoutQuestionsInput
   createdAt: DateTime
   id: String
   question: String!
@@ -421,8 +422,8 @@ input QuestionCreateWithoutAnswersInput {
 }
 
 input QuestionCreateWithoutAuthorInput {
-  Category: CategoryCreateNestedOneWithoutQuestionsInput
   answers: AnswerCreateNestedManyWithoutQuestionInput
+  category: CategoryCreateNestedOneWithoutQuestionsInput
   createdAt: DateTime
   id: String
   question: String!
@@ -460,9 +461,9 @@ input QuestionScalarWhereInput {
 }
 
 input QuestionUpdateInput {
-  Category: CategoryUpdateOneWithoutQuestionsInput
   answers: AnswerUpdateManyWithoutQuestionInput
   author: UserUpdateOneRequiredWithoutQuestionsInput
+  category: CategoryUpdateOneWithoutQuestionsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   question: StringFieldUpdateOperationsInput
@@ -512,8 +513,8 @@ input QuestionUpdateWithWhereUniqueWithoutAuthorInput {
 }
 
 input QuestionUpdateWithoutAnswersInput {
-  Category: CategoryUpdateOneWithoutQuestionsInput
   author: UserUpdateOneRequiredWithoutQuestionsInput
+  category: CategoryUpdateOneWithoutQuestionsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   question: StringFieldUpdateOperationsInput
@@ -522,8 +523,8 @@ input QuestionUpdateWithoutAnswersInput {
 }
 
 input QuestionUpdateWithoutAuthorInput {
-  Category: CategoryUpdateOneWithoutQuestionsInput
   answers: AnswerUpdateManyWithoutQuestionInput
+  category: CategoryUpdateOneWithoutQuestionsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   question: StringFieldUpdateOperationsInput
@@ -544,12 +545,12 @@ input QuestionUpsertWithoutAnswersInput {
 
 input QuestionWhereInput {
   AND: [QuestionWhereInput!]
-  Category: CategoryWhereInput
   NOT: [QuestionWhereInput!]
   OR: [QuestionWhereInput!]
   answers: AnswerListRelationFilter
   author: UserWhereInput
   authorId: IntFilter
+  category: CategoryWhereInput
   categoryId: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
@@ -631,17 +632,17 @@ input UserCreateOrConnectWithoutQuestionsInput {
 }
 
 input UserCreateWithoutAnswersInput {
-  Questions: QuestionCreateNestedManyWithoutAuthorInput
   createdAt: DateTime
   email: String
   emailVerified: DateTime
   image: String
   name: String
+  questions: QuestionCreateNestedManyWithoutAuthorInput
   updatedAt: DateTime
 }
 
 input UserCreateWithoutQuestionsInput {
-  Answers: AnswerCreateNestedManyWithoutAuthorInput
+  answers: AnswerCreateNestedManyWithoutAuthorInput
   createdAt: DateTime
   email: String
   emailVerified: DateTime
@@ -667,17 +668,17 @@ input UserUpdateOneRequiredWithoutQuestionsInput {
 }
 
 input UserUpdateWithoutAnswersInput {
-  Questions: QuestionUpdateManyWithoutAuthorInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: NullableStringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  questions: QuestionUpdateManyWithoutAuthorInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateWithoutQuestionsInput {
-  Answers: AnswerUpdateManyWithoutAuthorInput
+  answers: AnswerUpdateManyWithoutAuthorInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: NullableStringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -698,16 +699,16 @@ input UserUpsertWithoutQuestionsInput {
 
 input UserWhereInput {
   AND: [UserWhereInput!]
-  Answers: AnswerListRelationFilter
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
-  Questions: QuestionListRelationFilter
+  answers: AnswerListRelationFilter
   createdAt: DateTimeFilter
   email: StringNullableFilter
   emailVerified: DateTimeNullableFilter
   id: IntFilter
   image: StringNullableFilter
   name: StringNullableFilter
+  questions: QuestionListRelationFilter
   updatedAt: DateTimeFilter
 }
 

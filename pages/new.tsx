@@ -13,7 +13,7 @@ const New = ({ user }) => {
 
   return (
     <Layout title="Post new question">
-      <div className="flex-1 max-w-6xl mx-auto">
+      <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
         <form>
           <h1 className="mb-10 text-5xl font-bold">Post new question</h1>
           <label htmlFor="title" className="text-xs font-bold uppercase">

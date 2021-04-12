@@ -49,8 +49,8 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-  Questions Question[]
-  Answers   Answer[]
+  questions Question[]
+  answers   Answer[]
   @@map(name: "users")
 }
 

@@ -458,8 +458,9 @@ export type Question = {
   title: Scalars['String'];
   question: Scalars['String'];
   answers: Array<Answer>;
-  Category?: Maybe<Category>;
+  category?: Maybe<Category>;
   createdAt: Scalars['DateTime'];
+  author: User;
 };
 
 
@@ -476,21 +477,14 @@ export type QuestionCreateInput = {
   question: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  author: UserCreateNestedOneWithoutQuestionInput;
+  author: UserCreateNestedOneWithoutQuestionsInput;
   answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
-  upvote: UserCreateNestedOneWithoutQuestionsInput;
+  category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
 };
 
 export type QuestionCreateNestedManyWithoutAuthorInput = {
   create?: Maybe<Array<QuestionCreateWithoutAuthorInput>>;
   connectOrCreate?: Maybe<Array<QuestionCreateOrConnectWithoutAuthorInput>>;
-  connect?: Maybe<Array<QuestionWhereUniqueInput>>;
-};
-
-export type QuestionCreateNestedManyWithoutUpvoteInput = {
-  create?: Maybe<Array<QuestionCreateWithoutUpvoteInput>>;
-  connectOrCreate?: Maybe<Array<QuestionCreateOrConnectWithoutUpvoteInput>>;
   connect?: Maybe<Array<QuestionWhereUniqueInput>>;
 };
 
@@ -510,20 +504,14 @@ export type QuestionCreateOrConnectWithoutAuthorInput = {
   create: QuestionCreateWithoutAuthorInput;
 };
 
-export type QuestionCreateOrConnectWithoutUpvoteInput = {
-  where: QuestionWhereUniqueInput;
-  create: QuestionCreateWithoutUpvoteInput;
-};
-
 export type QuestionCreateWithoutAnswersInput = {
   id?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   question: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  author: UserCreateNestedOneWithoutQuestionInput;
-  Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
-  upvote: UserCreateNestedOneWithoutQuestionsInput;
+  author: UserCreateNestedOneWithoutQuestionsInput;
+  category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
 };
 
 export type QuestionCreateWithoutAuthorInput = {
@@ -533,19 +521,7 @@ export type QuestionCreateWithoutAuthorInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
-  upvote: UserCreateNestedOneWithoutQuestionsInput;
-};
-
-export type QuestionCreateWithoutUpvoteInput = {
-  id?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  question: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  author: UserCreateNestedOneWithoutQuestionInput;
-  answers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
+  category?: Maybe<CategoryCreateNestedOneWithoutQuestionsInput>;
 };
 
 export type QuestionListRelationFilter = {
@@ -562,7 +538,6 @@ export type QuestionOrderByInput = {
   updatedAt?: Maybe<SortOrder>;
   authorId?: Maybe<SortOrder>;
   categoryId?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
 };
 
 export type QuestionScalarWhereInput = {
@@ -576,7 +551,6 @@ export type QuestionScalarWhereInput = {
   updatedAt?: Maybe<DateTimeFilter>;
   authorId?: Maybe<IntFilter>;
   categoryId?: Maybe<StringNullableFilter>;
-  userId?: Maybe<IntFilter>;
 };
 
 export type QuestionUpdateInput = {
@@ -585,10 +559,9 @@ export type QuestionUpdateInput = {
   question?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  author?: Maybe<UserUpdateOneRequiredWithoutQuestionInput>;
+  author?: Maybe<UserUpdateOneRequiredWithoutQuestionsInput>;
   answers?: Maybe<AnswerUpdateManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
-  upvote?: Maybe<UserUpdateOneRequiredWithoutQuestionsInput>;
+  category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
 };
 
 export type QuestionUpdateManyMutationInput = {
@@ -604,11 +577,6 @@ export type QuestionUpdateManyWithWhereWithoutAuthorInput = {
   data: QuestionUpdateManyMutationInput;
 };
 
-export type QuestionUpdateManyWithWhereWithoutUpvoteInput = {
-  where: QuestionScalarWhereInput;
-  data: QuestionUpdateManyMutationInput;
-};
-
 export type QuestionUpdateManyWithoutAuthorInput = {
   create?: Maybe<Array<QuestionCreateWithoutAuthorInput>>;
   connectOrCreate?: Maybe<Array<QuestionCreateOrConnectWithoutAuthorInput>>;
@@ -619,19 +587,6 @@ export type QuestionUpdateManyWithoutAuthorInput = {
   delete?: Maybe<Array<QuestionWhereUniqueInput>>;
   update?: Maybe<Array<QuestionUpdateWithWhereUniqueWithoutAuthorInput>>;
   updateMany?: Maybe<Array<QuestionUpdateManyWithWhereWithoutAuthorInput>>;
-  deleteMany?: Maybe<Array<QuestionScalarWhereInput>>;
-};
-
-export type QuestionUpdateManyWithoutUpvoteInput = {
-  create?: Maybe<Array<QuestionCreateWithoutUpvoteInput>>;
-  connectOrCreate?: Maybe<Array<QuestionCreateOrConnectWithoutUpvoteInput>>;
-  upsert?: Maybe<Array<QuestionUpsertWithWhereUniqueWithoutUpvoteInput>>;
-  connect?: Maybe<Array<QuestionWhereUniqueInput>>;
-  set?: Maybe<Array<QuestionWhereUniqueInput>>;
-  disconnect?: Maybe<Array<QuestionWhereUniqueInput>>;
-  delete?: Maybe<Array<QuestionWhereUniqueInput>>;
-  update?: Maybe<Array<QuestionUpdateWithWhereUniqueWithoutUpvoteInput>>;
-  updateMany?: Maybe<Array<QuestionUpdateManyWithWhereWithoutUpvoteInput>>;
   deleteMany?: Maybe<Array<QuestionScalarWhereInput>>;
 };
 
@@ -650,20 +605,14 @@ export type QuestionUpdateWithWhereUniqueWithoutAuthorInput = {
   data: QuestionUpdateWithoutAuthorInput;
 };
 
-export type QuestionUpdateWithWhereUniqueWithoutUpvoteInput = {
-  where: QuestionWhereUniqueInput;
-  data: QuestionUpdateWithoutUpvoteInput;
-};
-
 export type QuestionUpdateWithoutAnswersInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   title?: Maybe<StringFieldUpdateOperationsInput>;
   question?: Maybe<StringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  author?: Maybe<UserUpdateOneRequiredWithoutQuestionInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
-  upvote?: Maybe<UserUpdateOneRequiredWithoutQuestionsInput>;
+  author?: Maybe<UserUpdateOneRequiredWithoutQuestionsInput>;
+  category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
 };
 
 export type QuestionUpdateWithoutAuthorInput = {
@@ -673,31 +622,13 @@ export type QuestionUpdateWithoutAuthorInput = {
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   answers?: Maybe<AnswerUpdateManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
-  upvote?: Maybe<UserUpdateOneRequiredWithoutQuestionsInput>;
-};
-
-export type QuestionUpdateWithoutUpvoteInput = {
-  id?: Maybe<StringFieldUpdateOperationsInput>;
-  title?: Maybe<StringFieldUpdateOperationsInput>;
-  question?: Maybe<StringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  author?: Maybe<UserUpdateOneRequiredWithoutQuestionInput>;
-  answers?: Maybe<AnswerUpdateManyWithoutQuestionInput>;
-  Category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
+  category?: Maybe<CategoryUpdateOneWithoutQuestionsInput>;
 };
 
 export type QuestionUpsertWithWhereUniqueWithoutAuthorInput = {
   where: QuestionWhereUniqueInput;
   update: QuestionUpdateWithoutAuthorInput;
   create: QuestionCreateWithoutAuthorInput;
-};
-
-export type QuestionUpsertWithWhereUniqueWithoutUpvoteInput = {
-  where: QuestionWhereUniqueInput;
-  update: QuestionUpdateWithoutUpvoteInput;
-  create: QuestionCreateWithoutUpvoteInput;
 };
 
 export type QuestionUpsertWithoutAnswersInput = {
@@ -717,10 +648,8 @@ export type QuestionWhereInput = {
   author?: Maybe<UserWhereInput>;
   authorId?: Maybe<IntFilter>;
   answers?: Maybe<AnswerListRelationFilter>;
-  Category?: Maybe<CategoryWhereInput>;
+  category?: Maybe<CategoryWhereInput>;
   categoryId?: Maybe<StringNullableFilter>;
-  upvote?: Maybe<UserWhereInput>;
-  userId?: Maybe<IntFilter>;
 };
 
 export type QuestionWhereUniqueInput = {
@@ -780,12 +709,6 @@ export type UserCreateNestedOneWithoutAnswersInput = {
   connect?: Maybe<UserWhereUniqueInput>;
 };
 
-export type UserCreateNestedOneWithoutQuestionInput = {
-  create?: Maybe<UserCreateWithoutQuestionInput>;
-  connectOrCreate?: Maybe<UserCreateOrConnectWithoutQuestionInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-};
-
 export type UserCreateNestedOneWithoutQuestionsInput = {
   create?: Maybe<UserCreateWithoutQuestionsInput>;
   connectOrCreate?: Maybe<UserCreateOrConnectWithoutQuestionsInput>;
@@ -795,11 +718,6 @@ export type UserCreateNestedOneWithoutQuestionsInput = {
 export type UserCreateOrConnectWithoutAnswersInput = {
   where: UserWhereUniqueInput;
   create: UserCreateWithoutAnswersInput;
-};
-
-export type UserCreateOrConnectWithoutQuestionInput = {
-  where: UserWhereUniqueInput;
-  create: UserCreateWithoutQuestionInput;
 };
 
 export type UserCreateOrConnectWithoutQuestionsInput = {
@@ -814,19 +732,7 @@ export type UserCreateWithoutAnswersInput = {
   image?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Questions?: Maybe<QuestionCreateNestedManyWithoutUpvoteInput>;
-  Question?: Maybe<QuestionCreateNestedManyWithoutAuthorInput>;
-};
-
-export type UserCreateWithoutQuestionInput = {
-  name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  emailVerified?: Maybe<Scalars['DateTime']>;
-  image?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  Questions?: Maybe<QuestionCreateNestedManyWithoutUpvoteInput>;
-  Answers?: Maybe<AnswerCreateNestedManyWithoutAuthorInput>;
+  questions?: Maybe<QuestionCreateNestedManyWithoutAuthorInput>;
 };
 
 export type UserCreateWithoutQuestionsInput = {
@@ -836,8 +742,7 @@ export type UserCreateWithoutQuestionsInput = {
   image?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  Answers?: Maybe<AnswerCreateNestedManyWithoutAuthorInput>;
-  Question?: Maybe<QuestionCreateNestedManyWithoutAuthorInput>;
+  answers?: Maybe<AnswerCreateNestedManyWithoutAuthorInput>;
 };
 
 export type UserUpdateOneRequiredWithoutAnswersInput = {
@@ -846,14 +751,6 @@ export type UserUpdateOneRequiredWithoutAnswersInput = {
   upsert?: Maybe<UserUpsertWithoutAnswersInput>;
   connect?: Maybe<UserWhereUniqueInput>;
   update?: Maybe<UserUpdateWithoutAnswersInput>;
-};
-
-export type UserUpdateOneRequiredWithoutQuestionInput = {
-  create?: Maybe<UserCreateWithoutQuestionInput>;
-  connectOrCreate?: Maybe<UserCreateOrConnectWithoutQuestionInput>;
-  upsert?: Maybe<UserUpsertWithoutQuestionInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-  update?: Maybe<UserUpdateWithoutQuestionInput>;
 };
 
 export type UserUpdateOneRequiredWithoutQuestionsInput = {
@@ -871,19 +768,7 @@ export type UserUpdateWithoutAnswersInput = {
   image?: Maybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Questions?: Maybe<QuestionUpdateManyWithoutUpvoteInput>;
-  Question?: Maybe<QuestionUpdateManyWithoutAuthorInput>;
-};
-
-export type UserUpdateWithoutQuestionInput = {
-  name?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  email?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  emailVerified?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
-  image?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Questions?: Maybe<QuestionUpdateManyWithoutUpvoteInput>;
-  Answers?: Maybe<AnswerUpdateManyWithoutAuthorInput>;
+  questions?: Maybe<QuestionUpdateManyWithoutAuthorInput>;
 };
 
 export type UserUpdateWithoutQuestionsInput = {
@@ -893,18 +778,12 @@ export type UserUpdateWithoutQuestionsInput = {
   image?: Maybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  Answers?: Maybe<AnswerUpdateManyWithoutAuthorInput>;
-  Question?: Maybe<QuestionUpdateManyWithoutAuthorInput>;
+  answers?: Maybe<AnswerUpdateManyWithoutAuthorInput>;
 };
 
 export type UserUpsertWithoutAnswersInput = {
   update: UserUpdateWithoutAnswersInput;
   create: UserCreateWithoutAnswersInput;
-};
-
-export type UserUpsertWithoutQuestionInput = {
-  update: UserUpdateWithoutQuestionInput;
-  create: UserCreateWithoutQuestionInput;
 };
 
 export type UserUpsertWithoutQuestionsInput = {
@@ -923,15 +802,30 @@ export type UserWhereInput = {
   image?: Maybe<StringNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
-  Questions?: Maybe<QuestionListRelationFilter>;
-  Answers?: Maybe<AnswerListRelationFilter>;
-  Question?: Maybe<QuestionListRelationFilter>;
+  questions?: Maybe<QuestionListRelationFilter>;
+  answers?: Maybe<AnswerListRelationFilter>;
 };
 
 export type UserWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
   email?: Maybe<Scalars['String']>;
 };
+
+export type CreateNewQuestionMutationVariables = Exact<{
+  title: Scalars['String'];
+  question: Scalars['String'];
+  category: Scalars['String'];
+  authorId: Scalars['Int'];
+}>;
+
+
+export type CreateNewQuestionMutation = (
+  { __typename?: 'Mutation' }
+  & { createOneQuestion: (
+    { __typename?: 'Question' }
+    & Pick<Question, 'id'>
+  ) }
+);
 
 export type AllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -944,7 +838,90 @@ export type AllCategoriesQuery = (
   )> }
 );
 
+export type AllQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type AllQuestionsQuery = (
+  { __typename?: 'Query' }
+  & { questions: Array<(
+    { __typename?: 'Question' }
+    & Pick<Question, 'id' | 'title' | 'question' | 'createdAt'>
+    & { category?: Maybe<(
+      { __typename?: 'Category' }
+      & Pick<Category, 'name'>
+    )>, answers: Array<(
+      { __typename?: 'Answer' }
+      & Pick<Answer, 'id'>
+    )> }
+  )> }
+);
+
+export type SingleQuestionQueryVariables = Exact<{
+  questionId: Scalars['String'];
+}>;
+
+
+export type SingleQuestionQuery = (
+  { __typename?: 'Query' }
+  & { question?: Maybe<(
+    { __typename?: 'Question' }
+    & Pick<Question, 'id' | 'title' | 'question' | 'createdAt'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'name'>
+    ), category?: Maybe<(
+      { __typename?: 'Category' }
+      & Pick<Category, 'name'>
+    )>, answers: Array<(
+      { __typename?: 'Answer' }
+      & Pick<Answer, 'id' | 'answer' | 'createdAt'>
+      & { author: (
+        { __typename?: 'User' }
+        & Pick<User, 'name' | 'image'>
+      ) }
+    )> }
+  )> }
+);
+
+
+export const CreateNewQuestionDocument = gql`
+    mutation CreateNewQuestion($title: String!, $question: String!, $category: String!, $authorId: Int!) {
+  createOneQuestion(
+    data: {title: $title, question: $question, category: {connect: {id: $category}}, author: {connect: {id: $authorId}}}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateNewQuestionMutationFn = Apollo.MutationFunction<CreateNewQuestionMutation, CreateNewQuestionMutationVariables>;
+
+/**
+ * __useCreateNewQuestionMutation__
+ *
+ * To run a mutation, you first call `useCreateNewQuestionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewQuestionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNewQuestionMutation, { data, loading, error }] = useCreateNewQuestionMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *      question: // value for 'question'
+ *      category: // value for 'category'
+ *      authorId: // value for 'authorId'
+ *   },
+ * });
+ */
+export function useCreateNewQuestionMutation(baseOptions?: Apollo.MutationHookOptions<CreateNewQuestionMutation, CreateNewQuestionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateNewQuestionMutation, CreateNewQuestionMutationVariables>(CreateNewQuestionDocument, options);
+      }
+export type CreateNewQuestionMutationHookResult = ReturnType<typeof useCreateNewQuestionMutation>;
+export type CreateNewQuestionMutationResult = Apollo.MutationResult<CreateNewQuestionMutation>;
+export type CreateNewQuestionMutationOptions = Apollo.BaseMutationOptions<CreateNewQuestionMutation, CreateNewQuestionMutationVariables>;
 export const AllCategoriesDocument = gql`
     query AllCategories {
   categories {
@@ -980,3 +957,100 @@ export function useAllCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type AllCategoriesQueryHookResult = ReturnType<typeof useAllCategoriesQuery>;
 export type AllCategoriesLazyQueryHookResult = ReturnType<typeof useAllCategoriesLazyQuery>;
 export type AllCategoriesQueryResult = Apollo.QueryResult<AllCategoriesQuery, AllCategoriesQueryVariables>;
+export const AllQuestionsDocument = gql`
+    query AllQuestions {
+  questions {
+    id
+    title
+    question
+    createdAt
+    category {
+      name
+    }
+    answers {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useAllQuestionsQuery__
+ *
+ * To run a query within a React component, call `useAllQuestionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllQuestionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllQuestionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllQuestionsQuery(baseOptions?: Apollo.QueryHookOptions<AllQuestionsQuery, AllQuestionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AllQuestionsQuery, AllQuestionsQueryVariables>(AllQuestionsDocument, options);
+      }
+export function useAllQuestionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllQuestionsQuery, AllQuestionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AllQuestionsQuery, AllQuestionsQueryVariables>(AllQuestionsDocument, options);
+        }
+export type AllQuestionsQueryHookResult = ReturnType<typeof useAllQuestionsQuery>;
+export type AllQuestionsLazyQueryHookResult = ReturnType<typeof useAllQuestionsLazyQuery>;
+export type AllQuestionsQueryResult = Apollo.QueryResult<AllQuestionsQuery, AllQuestionsQueryVariables>;
+export const SingleQuestionDocument = gql`
+    query SingleQuestion($questionId: String!) {
+  question(where: {id: $questionId}) {
+    id
+    title
+    question
+    author {
+      id
+      name
+    }
+    createdAt
+    category {
+      name
+    }
+    answers {
+      id
+      answer
+      createdAt
+      author {
+        name
+        image
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSingleQuestionQuery__
+ *
+ * To run a query within a React component, call `useSingleQuestionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleQuestionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleQuestionQuery({
+ *   variables: {
+ *      questionId: // value for 'questionId'
+ *   },
+ * });
+ */
+export function useSingleQuestionQuery(baseOptions: Apollo.QueryHookOptions<SingleQuestionQuery, SingleQuestionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SingleQuestionQuery, SingleQuestionQueryVariables>(SingleQuestionDocument, options);
+      }
+export function useSingleQuestionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SingleQuestionQuery, SingleQuestionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SingleQuestionQuery, SingleQuestionQueryVariables>(SingleQuestionDocument, options);
+        }
+export type SingleQuestionQueryHookResult = ReturnType<typeof useSingleQuestionQuery>;
+export type SingleQuestionLazyQueryHookResult = ReturnType<typeof useSingleQuestionLazyQuery>;
+export type SingleQuestionQueryResult = Apollo.QueryResult<SingleQuestionQuery, SingleQuestionQueryVariables>;

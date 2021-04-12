@@ -4,11 +4,14 @@ import { QuestionCard } from "components/QuestionCard";
 import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { useAllCategoriesQuery } from "generated/graphql";
+import { useAllCategoriesQuery, useAllQuestionsQuery } from "generated/graphql";
+import { useRouter } from "next/router";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
-  const { data } = useAllCategoriesQuery();
+  const { data: { categories } = {} } = useAllCategoriesQuery();
+  const { data: { questions } = {} } = useAllQuestionsQuery();
+  const router = useRouter();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -33,7 +36,7 @@ const IndexPage = () => {
           style={{ gridTemplateColumns: "200px 1fr 200px" }}
           className="flex flex-col h-full gap-3 xl:grid"
         >
-          <Categories categories={data} />
+          <Categories categories={categories} />
           <div className="flex flex-col space-y-3">
             <form className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0">
               <input
@@ -51,8 +54,14 @@ const IndexPage = () => {
                 <option value="oldest">Oldest</option>
               </select>
             </form>
-            {Array.from({ length: 20 }, (_, index) => {
-              return <QuestionCard key={index} />;
+            {questions?.map((question) => {
+              return (
+                <QuestionCard
+                  key={question.id}
+                  question={question}
+                  onClick={() => router.push(`/question/${question.id}`)}
+                />
+              );
             })}
           </div>
           <UserCard />

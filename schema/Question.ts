@@ -7,8 +7,9 @@ export const Question = objectType({
     t.model.title();
     t.model.question();
     t.model.answers();
-    t.model.Category();
+    t.model.category();
     t.model.createdAt();
+    t.model.author();
   },
 });
 
