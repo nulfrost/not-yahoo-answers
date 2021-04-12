@@ -868,7 +868,7 @@ export type SingleQuestionQuery = (
     & Pick<Question, 'id' | 'title' | 'question' | 'createdAt'>
     & { author: (
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'name'>
+      & Pick<User, 'id' | 'name' | 'image'>
     ), category?: Maybe<(
       { __typename?: 'Category' }
       & Pick<Category, 'name'>
@@ -1009,6 +1009,7 @@ export const SingleQuestionDocument = gql`
     author {
       id
       name
+      image
     }
     createdAt
     category {

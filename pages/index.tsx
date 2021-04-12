@@ -5,13 +5,11 @@ import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useAllCategoriesQuery, useAllQuestionsQuery } from "generated/graphql";
-import { useRouter } from "next/router";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
   const { data: { categories } = {} } = useAllCategoriesQuery();
   const { data: { questions } = {} } = useAllQuestionsQuery();
-  const router = useRouter();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -55,13 +53,7 @@ const IndexPage = () => {
               </select>
             </form>
             {questions?.map((question) => {
-              return (
-                <QuestionCard
-                  key={question.id}
-                  question={question}
-                  onClick={() => router.push(`/question/${question.id}`)}
-                />
-              );
+              return <QuestionCard key={question.id} question={question} />;
             })}
           </div>
           <UserCard />

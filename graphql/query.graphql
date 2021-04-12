@@ -28,6 +28,7 @@ query SingleQuestion($questionId: String!) {
     author {
       id
       name
+      image
     }
     createdAt
     category {
