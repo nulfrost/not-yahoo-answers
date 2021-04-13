@@ -20,9 +20,10 @@ export const Navbar = () => {
           <Link href="/">
             <a className="text-3xl font-bold text-purple-700">NYA</a>
           </Link>
-          <ul className="flex justify-end space-x-3 font-semibold">
+          <ul className="flex justify-end items-center space-x-3 font-semibold">
             {session ? (
               <>
+		<Link href="/new"><a className="bg-purple-700 hover:bg-purple-600 text-white py-2 px-7 duration-150 text-sm font-bold rounded-md uppercase focus:outline-none focus:ring-4 ring-purple-300">ASK</a></Link>
                 <button
                   type="button"
                   aria-expanded={showDropdown}
@@ -40,11 +41,6 @@ export const Navbar = () => {
                     showDropdown ? "block" : "hidden"
                   }`}
                 >
-                  <li className="px-2 py-3 duration-150 cursor-pointer hover:bg-gray-300">
-                    <Link href="/new">
-                      <a>Create new post</a>
-                    </Link>
-                  </li>
                   <li
                     className="px-2 py-3 duration-150 cursor-pointer hover:bg-gray-300"
                     onClick={() => signOut()}

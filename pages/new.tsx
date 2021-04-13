@@ -61,7 +61,7 @@ const New = ({ user }) => {
           </select>
           <button
             type="submit"
-            className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600"
+            className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-60 focus:outline-none focus:ring-4 ring-purple-300"
           >
             Post
           </button>
