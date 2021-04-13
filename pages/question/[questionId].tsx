@@ -38,7 +38,7 @@ const Question = () => {
             </div>
           </footer>
         </article>
-        <button className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600">
+        <button className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-4 ring-purple-300">
           Answer
         </button>
       </div>

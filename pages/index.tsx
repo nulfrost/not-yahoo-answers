@@ -5,11 +5,12 @@ import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useAllCategoriesQuery, useAllQuestionsQuery } from "generated/graphql";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
   const { data: { categories } = {} } = useAllCategoriesQuery();
-  const { data: { questions } = {} } = useAllQuestionsQuery();
+  const { data: { questions, loading } = {} } = useAllQuestionsQuery();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -52,9 +53,26 @@ const IndexPage = () => {
                 <option value="oldest">Oldest</option>
               </select>
             </form>
-            {questions?.map((question) => {
-              return <QuestionCard key={question.id} question={question} />;
-            })}
+            {loading
+              ? Array.from({ length: 3 }, (_, index) => (
+                  <>
+                    <div className="flex flex-col py-4 rounded-md xl:max-w-3xl">
+                      <SkeletonTheme color="#DDD6FE">
+                        <Skeleton width={350} />
+                        <Skeleton width={500} />
+                        <div className="mb-5">
+                          <Skeleton width={200} />
+                        </div>
+                        <div className="mt-10">
+                          <Skeleton width={100} />
+                        </div>
+                      </SkeletonTheme>
+                    </div>
+                  </>
+                ))
+              : questions?.map((question) => {
+                  return <QuestionCard key={question.id} question={question} />;
+                })}
           </div>
           <UserCard />
         </div>
