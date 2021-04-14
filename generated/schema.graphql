@@ -237,6 +237,7 @@ input CategoryWhereInput {
 
 input CategoryWhereUniqueInput {
   id: String
+  name: String
 }
 
 scalar DateTime
@@ -439,7 +440,7 @@ input QuestionListRelationFilter {
 
 input QuestionOrderByInput {
   authorId: SortOrder
-  categoryId: SortOrder
+  categoryName: SortOrder
   createdAt: SortOrder
   id: SortOrder
   question: SortOrder
@@ -452,7 +453,7 @@ input QuestionScalarWhereInput {
   NOT: [QuestionScalarWhereInput!]
   OR: [QuestionScalarWhereInput!]
   authorId: IntFilter
-  categoryId: StringNullableFilter
+  categoryName: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
   question: StringFilter
@@ -551,7 +552,7 @@ input QuestionWhereInput {
   author: UserWhereInput
   authorId: IntFilter
   category: CategoryWhereInput
-  categoryId: StringNullableFilter
+  categoryName: StringNullableFilter
   createdAt: DateTimeFilter
   id: StringFilter
   question: StringFilter

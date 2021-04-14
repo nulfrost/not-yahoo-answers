@@ -75,8 +75,8 @@ model Question {
   authorId  Int
   answers   Answer[]
 
-  category   Category? @relation(name: "CategoryToQuestion", fields: [categoryId], references: [id])
-  categoryId String?
+  category   Category? @relation(name: "CategoryToQuestion", fields: [categoryName], references: [name])
+  categoryName String?
   @@map(name: "questions")
 }
 
@@ -94,7 +94,7 @@ model Answer {
 
 model Category {
   id        String     @id @default(uuid())
-  name      String
+  name      String @unique
   questions Question[]
 
   @@map(name: "categories")

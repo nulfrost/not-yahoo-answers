@@ -1,17 +1,5 @@
-mutation CreateNewQuestion(
-  $title: String!
-  $question: String!
-  $category: String!
-  $authorId: Int!
-) {
-  createOneQuestion(
-    data: {
-      title: $title
-      question: $question
-      category: { connect: { id: $category } }
-      author: { connect: { id: $authorId } }
-    }
-  ) {
+mutation CreateNewQuestion($createOneQuestionData: QuestionCreateInput!) {
+  createOneQuestion(data: $createOneQuestionData) {
     id
   }
 }

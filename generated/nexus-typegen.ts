@@ -209,6 +209,7 @@ export interface NexusGenInputs {
   }
   CategoryWhereUniqueInput: { // input type
     id?: string | null; // String
+    name?: string | null; // String
   }
   DateTimeFieldUpdateOperationsInput: { // input type
     set?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -358,7 +359,7 @@ export interface NexusGenInputs {
   }
   QuestionOrderByInput: { // input type
     authorId?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    categoryId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    categoryName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     question?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -370,7 +371,7 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['QuestionScalarWhereInput'][] | null; // [QuestionScalarWhereInput!]
     OR?: NexusGenInputs['QuestionScalarWhereInput'][] | null; // [QuestionScalarWhereInput!]
     authorId?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    categoryId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    categoryName?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     question?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -458,7 +459,7 @@ export interface NexusGenInputs {
     author?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     authorId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     category?: NexusGenInputs['CategoryWhereInput'] | null; // CategoryWhereInput
-    categoryId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    categoryName?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     question?: NexusGenInputs['StringFilter'] | null; // StringFilter

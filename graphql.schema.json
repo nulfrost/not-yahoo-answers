@@ -2532,6 +2532,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5003,7 +5015,7 @@
             "deprecationReason": null
           },
           {
-            "name": "categoryId",
+            "name": "categoryName",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -5158,7 +5170,7 @@
             "deprecationReason": null
           },
           {
-            "name": "categoryId",
+            "name": "categoryName",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -6211,7 +6223,7 @@
             "deprecationReason": null
           },
           {
-            "name": "categoryId",
+            "name": "categoryName",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

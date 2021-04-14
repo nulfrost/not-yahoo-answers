@@ -7,14 +7,16 @@ import { getSession } from "next-auth/client";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 const New = ({ user }) => {
   const { data } = useAllCategoriesQuery();
 
   const [question, setQuestion] = useState("");
 
+  const router = useRouter();
   const [createQuestion] = useCreateNewQuestionMutation();
-
+  const [submitting, setSubmitting] = useState(false);
   const { register, handleSubmit } = useForm();
 
   return (
@@ -24,12 +26,24 @@ const New = ({ user }) => {
           onSubmit={handleSubmit((data) => {
             createQuestion({
               variables: {
-                title: data.title,
-                question,
-                category: data.category,
-                authorId: user.id,
+                createOneQuestionData: {
+                  title: data.title,
+                  question,
+                  category: {
+                    connect: {
+                      name: data.category,
+                    },
+                  },
+                  author: {
+                    connect: {
+                      id: user.id,
+                    },
+                  },
+                },
               },
-            });
+            })
+              .then(() => setSubmitting(!submitting))
+              .then(() => router.push("/"));
           })}
         >
           <h1 className="mb-10 text-5xl font-bold">Post new question</h1>
@@ -74,12 +88,13 @@ const New = ({ user }) => {
             {...register("category")}
           >
             {data?.categories.map((category) => (
-              <option key={category.id} value={category.id}>
+              <option key={category.id} value={category.name}>
                 {category.name}
               </option>
             ))}
           </select>
           <button
+            disabled={submitting}
             type="submit"
             className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600"
           >

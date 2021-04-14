@@ -260,6 +260,7 @@ export type CategoryWhereInput = {
 
 export type CategoryWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 
@@ -537,7 +538,7 @@ export type QuestionOrderByInput = {
   createdAt?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
   authorId?: Maybe<SortOrder>;
-  categoryId?: Maybe<SortOrder>;
+  categoryName?: Maybe<SortOrder>;
 };
 
 export type QuestionScalarWhereInput = {
@@ -550,7 +551,7 @@ export type QuestionScalarWhereInput = {
   createdAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   authorId?: Maybe<IntFilter>;
-  categoryId?: Maybe<StringNullableFilter>;
+  categoryName?: Maybe<StringNullableFilter>;
 };
 
 export type QuestionUpdateInput = {
@@ -649,7 +650,7 @@ export type QuestionWhereInput = {
   authorId?: Maybe<IntFilter>;
   answers?: Maybe<AnswerListRelationFilter>;
   category?: Maybe<CategoryWhereInput>;
-  categoryId?: Maybe<StringNullableFilter>;
+  categoryName?: Maybe<StringNullableFilter>;
 };
 
 export type QuestionWhereUniqueInput = {
@@ -812,10 +813,7 @@ export type UserWhereUniqueInput = {
 };
 
 export type CreateNewQuestionMutationVariables = Exact<{
-  title: Scalars['String'];
-  question: Scalars['String'];
-  category: Scalars['String'];
-  authorId: Scalars['Int'];
+  createOneQuestionData: QuestionCreateInput;
 }>;
 
 
@@ -884,7 +882,7 @@ export type SingleQuestionQuery = (
 );
 
 export type CategoryQuestionsQueryVariables = Exact<{
-  categoryId: Scalars['String'];
+  categoryWhere: CategoryWhereUniqueInput;
 }>;
 
 
@@ -908,10 +906,8 @@ export type CategoryQuestionsQuery = (
 
 
 export const CreateNewQuestionDocument = gql`
-    mutation CreateNewQuestion($title: String!, $question: String!, $category: String!, $authorId: Int!) {
-  createOneQuestion(
-    data: {title: $title, question: $question, category: {connect: {id: $category}}, author: {connect: {id: $authorId}}}
-  ) {
+    mutation CreateNewQuestion($createOneQuestionData: QuestionCreateInput!) {
+  createOneQuestion(data: $createOneQuestionData) {
     id
   }
 }
@@ -931,10 +927,7 @@ export type CreateNewQuestionMutationFn = Apollo.MutationFunction<CreateNewQuest
  * @example
  * const [createNewQuestionMutation, { data, loading, error }] = useCreateNewQuestionMutation({
  *   variables: {
- *      title: // value for 'title'
- *      question: // value for 'question'
- *      category: // value for 'category'
- *      authorId: // value for 'authorId'
+ *      createOneQuestionData: // value for 'createOneQuestionData'
  *   },
  * });
  */
@@ -1079,16 +1072,16 @@ export type SingleQuestionQueryHookResult = ReturnType<typeof useSingleQuestionQ
 export type SingleQuestionLazyQueryHookResult = ReturnType<typeof useSingleQuestionLazyQuery>;
 export type SingleQuestionQueryResult = Apollo.QueryResult<SingleQuestionQuery, SingleQuestionQueryVariables>;
 export const CategoryQuestionsDocument = gql`
-    query CategoryQuestions($categoryId: String!) {
-  category(where: {id: $categoryId}) {
+    query CategoryQuestions($categoryWhere: CategoryWhereUniqueInput!) {
+  category(where: $categoryWhere) {
     questions {
       id
       title
       question
-      createdAt
       category {
         name
       }
+      createdAt
       answers {
         id
       }
@@ -1109,7 +1102,7 @@ export const CategoryQuestionsDocument = gql`
  * @example
  * const { data, loading, error } = useCategoryQuestionsQuery({
  *   variables: {
- *      categoryId: // value for 'categoryId'
+ *      categoryWhere: // value for 'categoryWhere'
  *   },
  * });
  */

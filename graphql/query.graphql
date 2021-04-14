@@ -46,16 +46,16 @@ query SingleQuestion($questionId: String!) {
   }
 }
 
-query CategoryQuestions($categoryId: String!) {
-  category(where: { id: $categoryId }) {
+query CategoryQuestions($categoryWhere: CategoryWhereUniqueInput!) {
+  category(where: $categoryWhere) {
     questions {
       id
       title
       question
-      createdAt
       category {
         name
       }
+      createdAt
       answers {
         id
       }
