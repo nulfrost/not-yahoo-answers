@@ -1,20 +1,37 @@
 import { Layout } from "components/Layout";
-import { useAllCategoriesQuery } from "generated/graphql";
+import {
+  useAllCategoriesQuery,
+  useCreateNewQuestionMutation,
+} from "generated/graphql";
 import { getSession } from "next-auth/client";
 import { GetServerSideProps } from "next";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const New = ({ user }) => {
   const { data } = useAllCategoriesQuery();
 
   const [question, setQuestion] = useState("");
 
-  const questionRef = useRef<HTMLTextAreaElement>(null);
+  const [createQuestion] = useCreateNewQuestionMutation();
+
+  const { register, handleSubmit } = useForm();
 
   return (
     <Layout title="Post new question">
       <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
-        <form>
+        <form
+          onSubmit={handleSubmit((data) => {
+            createQuestion({
+              variables: {
+                title: data.title,
+                question,
+                category: data.category,
+                authorId: user.id,
+              },
+            });
+          })}
+        >
           <h1 className="mb-10 text-5xl font-bold">Post new question</h1>
           <label htmlFor="title" className="text-xs font-bold uppercase">
             Question title
@@ -25,6 +42,7 @@ const New = ({ user }) => {
             name="title"
             className="w-full mb-5 border border-purple-200 rounded xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
             placeholder="What is your question?"
+            {...register("title")}
             maxLength={150}
           />
           <label htmlFor="question" className="text-xs font-bold uppercase">
@@ -39,12 +57,11 @@ const New = ({ user }) => {
               className="w-full mb-2 border border-purple-200 rounded resize-none xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
               placeholder="Try and be as descriptive as you can for the best results."
               maxLength={1000}
-              ref={questionRef}
               onChange={(e) => setQuestion(e.target.value)}
             />
             <small className="self-end opacity-50">
               {" "}
-              {question.length} / {questionRef?.current?.maxLength}
+              {question.length} / 1000
             </small>
           </div>
           <label htmlFor="category" className="text-xs font-bold uppercase">
@@ -54,9 +71,12 @@ const New = ({ user }) => {
             name="category"
             id="category"
             className="w-full mb-5 border border-purple-200 rounded xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
+            {...register("category")}
           >
             {data?.categories.map((category) => (
-              <option key={category.id}>{category.name}</option>
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
             ))}
           </select>
           <button
