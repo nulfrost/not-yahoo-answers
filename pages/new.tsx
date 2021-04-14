@@ -21,7 +21,7 @@ const New = ({ user }) => {
 
   return (
     <Layout title="Post new question">
-      <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
+      <div className="flex-1 max-w-6xl mx-auto mt-[30px] xl:mt-[88px]">
         <form
           onSubmit={handleSubmit((data) => {
             createQuestion({
@@ -46,7 +46,9 @@ const New = ({ user }) => {
               .then(() => router.push("/"));
           })}
         >
-          <h1 className="mb-10 text-5xl font-bold">Post new question</h1>
+          <h1 className="mb-10 text-3xl xl:text-5xl font-bold">
+            Post new question
+          </h1>
           <label htmlFor="title" className="text-xs font-bold uppercase">
             Question title
           </label>
@@ -96,7 +98,7 @@ const New = ({ user }) => {
           <button
             disabled={submitting}
             type="submit"
-            className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600"
+            className="w-full xl:w-min px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600"
           >
             Post
           </button>
