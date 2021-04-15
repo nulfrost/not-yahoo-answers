@@ -9,12 +9,8 @@ import { LoadingSkeleton } from "components/LoadingSkeleton";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
-  const { data: { categories } = {} } = useAllCategoriesQuery({
-    fetchPolicy: "no-cache",
-  });
-  const { data: { questions } = {}, loading } = useAllQuestionsQuery({
-    fetchPolicy: "no-cache",
-  });
+  const { data: { categories } = {} } = useAllCategoriesQuery();
+  const { data: { questions } = {}, loading } = useAllQuestionsQuery();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);

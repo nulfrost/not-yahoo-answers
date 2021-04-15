@@ -23,9 +23,7 @@ const Category = () => {
     },
   });
 
-  const { data: { categories } = {} } = useAllCategoriesQuery({
-    fetchPolicy: "no-cache",
-  });
+  const { data: { categories } = {} } = useAllCategoriesQuery();
 
   return (
     <Layout title={`${router.query.category}`}>
