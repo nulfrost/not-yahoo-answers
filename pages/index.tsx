@@ -9,8 +9,12 @@ import { LoadingSkeleton } from "components/LoadingSkeleton";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
-  const { data: { categories } = {} } = useAllCategoriesQuery();
-  const { data: { questions } = {}, loading } = useAllQuestionsQuery();
+  const { data: { categories } = {} } = useAllCategoriesQuery({
+    fetchPolicy: "no-cache",
+  });
+  const { data: { questions } = {}, loading } = useAllQuestionsQuery({
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -30,7 +34,7 @@ const IndexPage = () => {
 
   return (
     <Layout title="Home">
-      <div className="flex-1 max-w-6xl mx-auto">
+      <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
         <div
           style={{ gridTemplateColumns: "200px 1fr 200px" }}
           className="flex flex-col h-full gap-3 xl:grid"

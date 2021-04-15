@@ -23,11 +23,13 @@ const Category = () => {
     },
   });
 
-  const { data: { categories } = {} } = useAllCategoriesQuery();
+  const { data: { categories } = {} } = useAllCategoriesQuery({
+    fetchPolicy: "no-cache",
+  });
 
   return (
     <Layout title={`${router.query.category}`}>
-      <div className="flex-1 max-w-6xl mx-auto">
+      <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
         <div
           style={{ gridTemplateColumns: "200px 1fr 200px" }}
           className="flex flex-col h-full gap-3 xl:grid"
