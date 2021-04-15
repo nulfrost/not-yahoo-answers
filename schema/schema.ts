@@ -12,8 +12,7 @@ const schema = makeSchema({
       outputs: {
         typegen: path.join(
           process.cwd(),
-          "generated",
-          "typegen-nexus-plugin-prisma.d.ts"
+          "generated/typegen-nexus-plugin-prisma.d.ts"
         ),
       },
     }),
@@ -21,6 +20,13 @@ const schema = makeSchema({
   outputs: {
     typegen: path.join(process.cwd(), "generated/nexus-typegen.ts"),
     schema: path.join(process.cwd(), "generated/schema.graphql"),
+  },
+  sourceTypes: {
+    modules: [{ module: "@prisma/client", alias: "PrismaClient" }],
+  },
+  contextType: {
+    module: path.join(process.cwd(), "schema/context.ts"),
+    export: "Context",
   },
 });
 
