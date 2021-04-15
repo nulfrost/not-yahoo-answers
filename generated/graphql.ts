@@ -836,7 +836,9 @@ export type AllCategoriesQuery = (
   )> }
 );
 
-export type AllQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllQuestionsQueryVariables = Exact<{
+  questionsOrderBy?: Maybe<Array<QuestionOrderByInput> | QuestionOrderByInput>;
+}>;
 
 
 export type AllQuestionsQuery = (
@@ -844,12 +846,12 @@ export type AllQuestionsQuery = (
   & { questions: Array<(
     { __typename?: 'Question' }
     & Pick<Question, 'id' | 'title' | 'question' | 'createdAt'>
-    & { category?: Maybe<(
-      { __typename?: 'Category' }
-      & Pick<Category, 'name'>
-    )>, answers: Array<(
+    & { answers: Array<(
       { __typename?: 'Answer' }
       & Pick<Answer, 'id'>
+    )>, category?: Maybe<(
+      { __typename?: 'Category' }
+      & Pick<Category, 'name'>
     )> }
   )> }
 );
@@ -974,18 +976,18 @@ export type AllCategoriesQueryHookResult = ReturnType<typeof useAllCategoriesQue
 export type AllCategoriesLazyQueryHookResult = ReturnType<typeof useAllCategoriesLazyQuery>;
 export type AllCategoriesQueryResult = Apollo.QueryResult<AllCategoriesQuery, AllCategoriesQueryVariables>;
 export const AllQuestionsDocument = gql`
-    query AllQuestions {
-  questions {
+    query AllQuestions($questionsOrderBy: [QuestionOrderByInput!]) {
+  questions(orderBy: $questionsOrderBy) {
     id
     title
     question
-    createdAt
-    category {
-      name
-    }
     answers {
       id
     }
+    category {
+      name
+    }
+    createdAt
   }
 }
     `;
@@ -1002,6 +1004,7 @@ export const AllQuestionsDocument = gql`
  * @example
  * const { data, loading, error } = useAllQuestionsQuery({
  *   variables: {
+ *      questionsOrderBy: // value for 'questionsOrderBy'
  *   },
  * });
  */

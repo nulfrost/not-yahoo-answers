@@ -15,6 +15,7 @@ const Category = () => {
   const {
     data: { category: { questions } = {} } = {},
     loading,
+    refetch,
   } = useCategoryQuestionsQuery({
     variables: {
       categoryWhere: {

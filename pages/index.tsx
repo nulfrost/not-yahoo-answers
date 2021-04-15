@@ -4,13 +4,17 @@ import { QuestionCard } from "components/QuestionCard";
 import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { useAllCategoriesQuery, useAllQuestionsQuery } from "generated/graphql";
+import {
+  SortOrder,
+  useAllCategoriesQuery,
+  useAllQuestionsQuery,
+} from "generated/graphql";
 import { LoadingSkeleton } from "components/LoadingSkeleton";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
   const { data: { categories } = {} } = useAllCategoriesQuery();
-  const { data: { questions } = {}, loading } = useAllQuestionsQuery();
+  const { data: { questions } = {}, loading, refetch } = useAllQuestionsQuery();
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -48,6 +52,19 @@ const IndexPage = () => {
                 name="sort"
                 id="sort"
                 className="w-full border border-purple-200 rounded xl:w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
+                onChange={(e) =>
+                  e.target.value === "newest"
+                    ? refetch({
+                        questionsOrderBy: {
+                          createdAt: SortOrder.Desc,
+                        },
+                      })
+                    : refetch({
+                        questionsOrderBy: {
+                          createdAt: SortOrder.Asc,
+                        },
+                      })
+                }
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
