@@ -6,16 +6,12 @@ import { QuestionCard } from "components/QuestionCard";
 import { Categories } from "components/Categories";
 import { useAllCategoriesQuery } from "generated/graphql";
 import { UserCard } from "components/UserCard";
-import { HiChevronUp } from "react-icons/hi";
-import { useState } from "react";
 
 const Category = () => {
   const router = useRouter();
-  const [toTop, setToTop] = useState(false);
   const {
     data: { category: { questions } = {} } = {},
     loading,
-    refetch,
   } = useCategoryQuestionsQuery({
     variables: {
       categoryWhere: {
@@ -64,15 +60,6 @@ const Category = () => {
           <UserCard />
         </div>
       </div>
-      <HiChevronUp
-        className={`hidden xl:block fixed w-10 h-10 text-white bg-purple-600 bottom-56 right-72 transition-all duration-150 cursor-pointer ${
-          toTop ? "opacity-100" : "opacity-0"
-        }`}
-        onClick={() => {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-        }}
-      />
     </Layout>
   );
 };

@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "npm run prebuild && next build",
     "start": "next start",
     "commit": "git add . && cz",
     "migrate": "npx prisma migrate dev --name",
     "type-check": "tsc",
-    "generate": "graphql-codegen --config codegen.yml --watch"
+    "generate": "graphql-codegen --config codegen.yml --watch",
+    "prebuild": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only schema"
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",
