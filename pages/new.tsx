@@ -46,7 +46,7 @@ const New = ({ user }) => {
               .then(() => router.push("/"));
           })}
         >
-          <h1 className="mb-10 text-3xl xl:text-5xl font-bold">
+          <h1 className="mb-10 text-3xl font-bold xl:text-5xl">
             Post new question
           </h1>
           <label htmlFor="title" className="text-xs font-bold uppercase">
@@ -98,9 +98,9 @@ const New = ({ user }) => {
           <button
             disabled={submitting}
             type="submit"
-            className="w-full xl:w-min px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600"
+            className="w-full px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md xl:w-max hover:bg-purple-600"
           >
-            Post
+            Post question
           </button>
         </form>
       </div>

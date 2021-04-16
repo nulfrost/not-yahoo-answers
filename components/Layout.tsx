@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Navbar } from "components/Navbar";
+import { GoLogoGithub } from "react-icons/go";
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
   title: string;
@@ -14,8 +15,18 @@ export const Layout = ({ title, children }: LayoutProps) => (
     </Head>
     <Navbar />
     <main className="flex-1 xl:mt-[88px] px-5 xl:px-0 mb-20">{children}</main>
-    <footer className="max-w-6xl px-10 py-5 mx-auto font-semibold pb-10">
-      <p>Made with 💖 by Dane.</p>
+    <footer className="font-semibold ">
+      <div className="flex items-center justify-between max-w-6xl mx-auto">
+        <a
+          href="https://github.com/nulfrost/not-yahoo-answers"
+          className="text-gray-400 duration-150 hover:text-purple-700"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GoLogoGithub className="w-12 h-12" />
+        </a>
+        <p>Made with 💖 by Dane.</p>
+      </div>
     </footer>
   </>
 );

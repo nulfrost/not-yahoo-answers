@@ -23,7 +23,7 @@ const Question = () => {
       <div className="flex-1 max-w-6xl mx-auto mt-[88px] flex flex-col">
         {loading ? (
           <>
-            <article className="py-4 mb-5 rounded bg-gray-50 px-7">
+            <article className="py-4 mb-5 rounded px-7">
               <div className="mb-4">
                 <Skeleton width={400} />
               </div>
@@ -43,11 +43,13 @@ const Question = () => {
           </>
         ) : (
           <>
-            <article className="py-4 mb-5 rounded bg-gray-50 px-7">
-              <h1 className="mb-4 text-2xl font-bold xl:text-4xl">
+            <article className="mb-5 rounded">
+              <h1 className="mb-4 text-2xl font-bold xl:text-5xl">
                 {data?.question?.title}
               </h1>
-              <p className="mb-32 xl:text-lg">{data?.question?.question}</p>
+              <p className="mb-32 text-gray-500 xl:text-lg">
+                {data?.question?.question}
+              </p>
               <footer className="flex flex-col">
                 <div className="flex items-center self-end space-x-3">
                   <img
@@ -96,31 +98,38 @@ const Question = () => {
             Answer question
           </button>
         </form>
-        <select
-          name="sort"
-          id="sort"
-          className="self-end block mb-10 border border-purple-200 rounded w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
-        >
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-        </select>
-        <div className="space-y-4 divide-y-2 divide-gray-100 ">
-          {Array.from({ length: 10 }, (_, index) => (
-            <>
-              <article className="pt-4 text-sm" key={index}>
-                <header className="mb-5">
-                  <p className="font-semibold ">Dane Miller</p>
-                  <p>4 hours ago</p>
+        <div className="flex items-center justify-between pb-6 mb-8 border-b-2 border-gray-100">
+          <p className="text-3xl font-bold ">Answers</p>
+          <select
+            name="sort"
+            id="sort"
+            className="self-end block border border-purple-200 rounded w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
+          >
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+        <div className="space-y-4 divide-y-2 divide-gray-100">
+          {data?.question?.answers?.map(
+            ({ id, answer, createdAt, author: { name, image } }) => (
+              <article className="pt-4 text-sm" key={id}>
+                <header className="flex items-center mb-3 space-x-2">
+                  <img
+                    src={image}
+                    alt={`${name}'s avatar`}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <div>
+                    <p className="font-semibold">{name}</p>
+                    <p className="text-gray-500">
+                      {distanceInWordsStrict(new Date(), createdAt)} ago
+                    </p>
+                  </div>
                 </header>
-                <p className="text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Explicabo, natus quo! Repellendus rem esse fuga repellat
-                  culpa? Sapiente esse necessitatibus doloribus vel nisi at odio
-                  suscipit dolores, corporis asperiores amet.
-                </p>
+                <p className="text-gray-600">{answer}</p>
               </article>
-            </>
-          ))}
+            )
+          )}
         </div>
       </div>
     </Layout>
