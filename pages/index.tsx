@@ -14,7 +14,14 @@ import { LoadingSkeleton } from "components/LoadingSkeleton";
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
   const { data: { categories } = {} } = useAllCategoriesQuery();
-  const { data: { questions } = {}, loading, refetch } = useAllQuestionsQuery();
+  const [query, setQuery] = useState("");
+  const { data: { questions } = {}, loading, refetch } = useAllQuestionsQuery({
+    variables: {
+      questionsOrderBy: {
+        updatedAt: SortOrder.Desc,
+      },
+    },
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -32,6 +39,14 @@ const IndexPage = () => {
     return setToTop(false);
   }
 
+  useEffect(() => {
+    refetch({
+      questionsOrderBy: {
+        createdAt: SortOrder.Desc,
+      },
+    });
+  });
+
   return (
     <Layout title="Home">
       <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
@@ -41,12 +56,34 @@ const IndexPage = () => {
         >
           <Categories categories={categories} />
           <div className="flex flex-col space-y-3">
-            <form className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0">
+            <form
+              className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0"
+              onSubmit={(e) => {
+                e.preventDefault();
+                refetch({
+                  questionsWhere: {
+                    OR: [
+                      {
+                        title: {
+                          contains: query,
+                        },
+                      },
+                      {
+                        question: {
+                          contains: query,
+                        },
+                      },
+                    ],
+                  },
+                });
+              }}
+            >
               <input
                 type="search"
                 name="questionSearch"
                 className="w-full border border-purple-200 rounded text-md focus:outline-none focus:ring-purple-700 focus:ring-2"
                 placeholder="What are you looking for?"
+                onChange={(e) => setQuery(e.target.value)}
               />
               <select
                 name="sort"

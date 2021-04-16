@@ -851,6 +851,7 @@ export type AllCategoriesQuery = (
 
 export type AllQuestionsQueryVariables = Exact<{
   questionsOrderBy?: Maybe<Array<QuestionOrderByInput> | QuestionOrderByInput>;
+  questionsWhere?: Maybe<QuestionWhereInput>;
 }>;
 
 
@@ -1022,8 +1023,8 @@ export type AllCategoriesQueryHookResult = ReturnType<typeof useAllCategoriesQue
 export type AllCategoriesLazyQueryHookResult = ReturnType<typeof useAllCategoriesLazyQuery>;
 export type AllCategoriesQueryResult = Apollo.QueryResult<AllCategoriesQuery, AllCategoriesQueryVariables>;
 export const AllQuestionsDocument = gql`
-    query AllQuestions($questionsOrderBy: [QuestionOrderByInput!]) {
-  questions(orderBy: $questionsOrderBy) {
+    query AllQuestions($questionsOrderBy: [QuestionOrderByInput!], $questionsWhere: QuestionWhereInput) {
+  questions(orderBy: $questionsOrderBy, where: $questionsWhere) {
     id
     title
     question
@@ -1051,6 +1052,7 @@ export const AllQuestionsDocument = gql`
  * const { data, loading, error } = useAllQuestionsQuery({
  *   variables: {
  *      questionsOrderBy: // value for 'questionsOrderBy'
+ *      questionsWhere: // value for 'questionsWhere'
  *   },
  * });
  */

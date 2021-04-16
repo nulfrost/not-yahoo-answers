@@ -4,8 +4,12 @@ query AllCategories {
     name
   }
 }
-query AllQuestions($questionsOrderBy: [QuestionOrderByInput!]) {
-  questions(orderBy: $questionsOrderBy) {
+
+query AllQuestions(
+  $questionsOrderBy: [QuestionOrderByInput!]
+  $questionsWhere: QuestionWhereInput
+) {
+  questions(orderBy: $questionsOrderBy, where: $questionsWhere) {
     id
     title
     question
@@ -18,7 +22,6 @@ query AllQuestions($questionsOrderBy: [QuestionOrderByInput!]) {
     createdAt
   }
 }
-
 
 query SingleQuestion($questionId: String!) {
   question(where: { id: $questionId }) {
