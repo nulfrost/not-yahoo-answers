@@ -45,7 +45,7 @@ const IndexPage = () => {
         createdAt: SortOrder.Desc,
       },
     });
-  });
+  }, []);
 
   return (
     <Layout title="Home">

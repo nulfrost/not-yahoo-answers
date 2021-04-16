@@ -169,34 +169,38 @@ const Question = () => {
         </form>
         <div className="flex items-center justify-between pb-6 mb-8 border-b-2 border-gray-100">
           <p className="text-3xl font-bold ">Answers</p>
-          <select
+          {/* <select
             name="sort"
             id="sort"
             className="self-end block border border-purple-200 rounded w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
-          </select>
+          </select> */}
         </div>
         <div className="space-y-4 divide-y-2 divide-gray-100">
-          {data?.question?.answers?.map(
-            ({ id, answer, createdAt, author: { name, image } }) => (
-              <article className="pt-4 text-sm" key={id}>
-                <header className="flex items-center mb-3 space-x-2">
-                  <img
-                    src={image}
-                    alt={`${name}'s avatar`}
-                    className="w-10 h-10 rounded-full"
-                  />
-                  <div>
-                    <p className="font-semibold">{name}</p>
-                    <p className="text-gray-500">
-                      {distanceInWordsStrict(new Date(), createdAt)} ago
-                    </p>
-                  </div>
-                </header>
-                <p className="text-gray-600">{answer}</p>
-              </article>
+          {data?.question?.answers.length === 0 ? (
+            <p className="text-gray-500">No answers yet, be the first one!</p>
+          ) : (
+            data?.question?.answers?.map(
+              ({ id, answer, createdAt, author: { name, image } }) => (
+                <article className="pt-5 pb-3 text-sm" key={id}>
+                  <header className="flex items-center mb-3 space-x-2">
+                    <img
+                      src={image}
+                      alt={`${name}'s avatar`}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <div>
+                      <p className="font-semibold">{name}</p>
+                      <p className="text-gray-500">
+                        {distanceInWordsStrict(new Date(), createdAt)} ago
+                      </p>
+                    </div>
+                  </header>
+                  <p className="text-gray-600">{answer}</p>
+                </article>
+              )
             )
           )}
         </div>
