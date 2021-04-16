@@ -825,6 +825,19 @@ export type CreateNewQuestionMutation = (
   ) }
 );
 
+export type CreateNewAnswerMutationVariables = Exact<{
+  createOneAnswerData: AnswerCreateInput;
+}>;
+
+
+export type CreateNewAnswerMutation = (
+  { __typename?: 'Mutation' }
+  & { createOneAnswer: (
+    { __typename?: 'Answer' }
+    & Pick<Answer, 'createdAt'>
+  ) }
+);
+
 export type AllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -940,6 +953,39 @@ export function useCreateNewQuestionMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateNewQuestionMutationHookResult = ReturnType<typeof useCreateNewQuestionMutation>;
 export type CreateNewQuestionMutationResult = Apollo.MutationResult<CreateNewQuestionMutation>;
 export type CreateNewQuestionMutationOptions = Apollo.BaseMutationOptions<CreateNewQuestionMutation, CreateNewQuestionMutationVariables>;
+export const CreateNewAnswerDocument = gql`
+    mutation CreateNewAnswer($createOneAnswerData: AnswerCreateInput!) {
+  createOneAnswer(data: $createOneAnswerData) {
+    createdAt
+  }
+}
+    `;
+export type CreateNewAnswerMutationFn = Apollo.MutationFunction<CreateNewAnswerMutation, CreateNewAnswerMutationVariables>;
+
+/**
+ * __useCreateNewAnswerMutation__
+ *
+ * To run a mutation, you first call `useCreateNewAnswerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewAnswerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNewAnswerMutation, { data, loading, error }] = useCreateNewAnswerMutation({
+ *   variables: {
+ *      createOneAnswerData: // value for 'createOneAnswerData'
+ *   },
+ * });
+ */
+export function useCreateNewAnswerMutation(baseOptions?: Apollo.MutationHookOptions<CreateNewAnswerMutation, CreateNewAnswerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateNewAnswerMutation, CreateNewAnswerMutationVariables>(CreateNewAnswerDocument, options);
+      }
+export type CreateNewAnswerMutationHookResult = ReturnType<typeof useCreateNewAnswerMutation>;
+export type CreateNewAnswerMutationResult = Apollo.MutationResult<CreateNewAnswerMutation>;
+export type CreateNewAnswerMutationOptions = Apollo.BaseMutationOptions<CreateNewAnswerMutation, CreateNewAnswerMutationVariables>;
 export const AllCategoriesDocument = gql`
     query AllCategories {
   categories {

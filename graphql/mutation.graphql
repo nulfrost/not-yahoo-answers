@@ -3,3 +3,9 @@ mutation CreateNewQuestion($createOneQuestionData: QuestionCreateInput!) {
     id
   }
 }
+
+mutation CreateNewAnswer($createOneAnswerData: AnswerCreateInput!) {
+  createOneAnswer(data: $createOneAnswerData) {
+    createdAt
+  }
+}

@@ -1,14 +1,47 @@
 import { Layout } from "components/Layout";
-import { useSingleQuestionQuery } from "generated/graphql";
+import {
+  useCreateNewAnswerMutation,
+  useSingleQuestionQuery,
+} from "generated/graphql";
 import { distanceInWordsStrict } from "date-fns";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/client";
 import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
+import { gql } from "@apollo/client";
+const query = gql`
+  query SingleQuestion($questionId: String!) {
+    question(where: { id: $questionId }) {
+      id
+      title
+      question
+      author {
+        id
+        name
+        image
+      }
+      createdAt
+      category {
+        name
+      }
+      answers {
+        id
+        answer
+        createdAt
+        author {
+          name
+          image
+        }
+      }
+    }
+  }
+`;
 
 const Question = () => {
   const router = useRouter();
+  const [session] = useSession();
   const [answer, setAnswer] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const { data, loading } = useSingleQuestionQuery({
     variables: {
@@ -16,7 +49,7 @@ const Question = () => {
     },
   });
 
-  const [session] = useSession();
+  const [createAnswer] = useCreateNewAnswerMutation();
 
   return (
     <Layout title={data?.question?.title}>
@@ -77,11 +110,44 @@ const Question = () => {
             </article>
           </>
         )}
-        <form className={`mb-20 ${session?.user ? "block" : "hidden"}`}>
+        <form
+          className={`mb-20 ${session?.user ? "block" : "hidden"}`}
+          onSubmit={(e) => {
+            e.preventDefault();
+            createAnswer({
+              variables: {
+                createOneAnswerData: {
+                  answer,
+                  author: {
+                    connect: {
+                      id: session?.user?.id,
+                    },
+                  },
+                  question: {
+                    connect: {
+                      id: router?.query?.questionId as string,
+                    },
+                  },
+                },
+              },
+              refetchQueries: [
+                {
+                  query,
+                  variables: {
+                    questionId: router?.query?.questionId as string,
+                  },
+                },
+              ],
+            }).then(() => {
+              setSubmitting(!submitting);
+            });
+          }}
+        >
           <div className="flex flex-col">
             <textarea
               name="question"
               id="question"
+              disabled={submitting}
               cols={30}
               rows={10}
               className="w-full mb-2 border border-purple-200 rounded resize-none xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
@@ -94,7 +160,10 @@ const Question = () => {
               {answer.length} / 5000
             </small>
           </div>
-          <button className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-4 ring-purple-300">
+          <button
+            disabled={submitting}
+            className="px-10 py-3 text-sm font-bold text-white uppercase duration-150 bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:ring-4 ring-purple-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             Answer question
           </button>
         </form>

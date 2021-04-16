@@ -35,8 +35,8 @@ const Category = () => {
               <input
                 type="search"
                 name="questionSearch"
-                className="w-full border border-purple-200 rounded xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
-                placeholder="You've got questions, not yahoo answers has answers"
+                className="w-full border border-purple-200 rounded text-md focus:outline-none focus:ring-purple-700 focus:ring-2"
+                placeholder="What are you looking for?"
               />
               <select
                 name="sort"

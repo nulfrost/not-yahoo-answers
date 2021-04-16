@@ -15,7 +15,7 @@ export const Layout = ({ title, children }: LayoutProps) => (
     </Head>
     <Navbar />
     <main className="flex-1 xl:mt-[88px] px-5 xl:px-0 mb-20">{children}</main>
-    <footer className="font-semibold ">
+    <footer className="px-5 font-semibold">
       <div className="flex items-center justify-between max-w-6xl mx-auto">
         <a
           href="https://github.com/nulfrost/not-yahoo-answers"
