@@ -863,6 +863,10 @@ export type AllQuestionsQuery = (
     & { answers: Array<(
       { __typename?: 'Answer' }
       & Pick<Answer, 'id'>
+      & { author: (
+        { __typename?: 'User' }
+        & Pick<User, 'id'>
+      ) }
     )>, category?: Maybe<(
       { __typename?: 'Category' }
       & Pick<Category, 'name'>
@@ -915,6 +919,10 @@ export type CategoryQuestionsQuery = (
       )>, answers: Array<(
         { __typename?: 'Answer' }
         & Pick<Answer, 'id'>
+        & { author: (
+          { __typename?: 'User' }
+          & Pick<User, 'id'>
+        ) }
       )> }
     )> }
   )> }
@@ -1030,6 +1038,9 @@ export const AllQuestionsDocument = gql`
     question
     answers {
       id
+      author {
+        id
+      }
     }
     category {
       name
@@ -1135,6 +1146,9 @@ export const CategoryQuestionsDocument = gql`
       createdAt
       answers {
         id
+        author {
+          id
+        }
       }
     }
   }

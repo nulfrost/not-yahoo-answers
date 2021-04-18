@@ -12,7 +12,10 @@ export const Category = objectType({
 export const CategoryQuery = extendType({
   type: "Query",
   definition(t) {
-    t.crud.categories();
+    t.crud.categories({
+      filtering: true,
+      ordering: true,
+    });
     t.crud.category();
   },
 });

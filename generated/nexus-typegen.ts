@@ -182,6 +182,10 @@ export interface NexusGenInputs {
     id?: string | null; // String
     name: string; // String!
   }
+  CategoryOrderByInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   CategoryUpdateOneWithoutQuestionsInput: { // input type
     connect?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
     connectOrCreate?: NexusGenInputs['CategoryCreateOrConnectWithoutQuestionsInput'] | null; // CategoryCreateOrConnectWithoutQuestionsInput
@@ -774,6 +778,8 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['CategoryWhereUniqueInput'] | null; // CategoryWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['CategoryOrderByInput'][] | null; // [CategoryOrderByInput!]
+      where?: NexusGenInputs['CategoryWhereInput'] | null; // CategoryWhereInput
     }
     category: { // args
       where: NexusGenInputs['CategoryWhereUniqueInput']; // CategoryWhereUniqueInput!

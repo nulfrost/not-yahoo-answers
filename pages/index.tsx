@@ -9,6 +9,7 @@ import {
   useAllCategoriesQuery,
   useAllQuestionsQuery,
 } from "generated/graphql";
+import { useSession } from "next-auth/client";
 import { LoadingSkeleton } from "components/LoadingSkeleton";
 
 const IndexPage = () => {
@@ -22,6 +23,15 @@ const IndexPage = () => {
       },
     },
   });
+
+  const [session] = useSession();
+
+  const totalQuestionsAnswered = questions
+    ?.map(({ answers }) =>
+      answers.filter((answer) => answer?.author?.id === session?.user?.id)
+    )
+    .flat()
+    .map(({ id }) => id);
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
@@ -39,23 +49,12 @@ const IndexPage = () => {
     return setToTop(false);
   }
 
-  useEffect(() => {
-    refetch({
-      questionsOrderBy: {
-        createdAt: SortOrder.Desc,
-      },
-    });
-  }, []);
-
   return (
     <Layout title="Home">
       <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
-        <div
-          style={{ gridTemplateColumns: "200px 1fr 200px" }}
-          className="flex flex-col h-full gap-3 xl:grid"
-        >
+        <div className="flex flex-col h-full gap-3 xl:grid xl:grid-cols-12">
           <Categories categories={categories} />
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col col-span-8 space-y-3">
             <form
               className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0"
               onSubmit={(e) => {
@@ -83,7 +82,7 @@ const IndexPage = () => {
                 name="questionSearch"
                 className="w-full border border-purple-200 rounded text-md focus:outline-none focus:ring-purple-700 focus:ring-2"
                 placeholder="What are you looking for?"
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => setQuery(e.target.value.toLowerCase())}
               />
               <select
                 name="sort"
@@ -117,7 +116,7 @@ const IndexPage = () => {
               })
             )}
           </div>
-          <UserCard />
+          <UserCard answeredQuestions={totalQuestionsAnswered} />
         </div>
       </div>
       <HiChevronUp

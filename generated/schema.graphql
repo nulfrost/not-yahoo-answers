@@ -206,6 +206,11 @@ input CategoryCreateWithoutQuestionsInput {
   name: String!
 }
 
+input CategoryOrderByInput {
+  id: SortOrder
+  name: SortOrder
+}
+
 input CategoryUpdateOneWithoutQuestionsInput {
   connect: CategoryWhereUniqueInput
   connectOrCreate: CategoryCreateOrConnectWithoutQuestionsInput
@@ -358,7 +363,7 @@ input NullableStringFieldUpdateOperationsInput {
 }
 
 type Query {
-  categories(after: CategoryWhereUniqueInput, before: CategoryWhereUniqueInput, first: Int, last: Int): [Category!]!
+  categories(after: CategoryWhereUniqueInput, before: CategoryWhereUniqueInput, first: Int, last: Int, orderBy: [CategoryOrderByInput!], where: CategoryWhereInput): [Category!]!
   category(where: CategoryWhereUniqueInput!): Category
   question(where: QuestionWhereUniqueInput!): Question
   questions(after: QuestionWhereUniqueInput, before: QuestionWhereUniqueInput, first: Int, last: Int, orderBy: [QuestionOrderByInput!], where: QuestionWhereInput): [Question!]!

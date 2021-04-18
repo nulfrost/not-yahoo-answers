@@ -15,6 +15,9 @@ query AllQuestions(
     question
     answers {
       id
+      author {
+        id
+      }
     }
     category {
       name
@@ -61,6 +64,9 @@ query CategoryQuestions($categoryWhere: CategoryWhereUniqueInput!) {
       createdAt
       answers {
         id
+        author {
+          id
+        }
       }
     }
   }

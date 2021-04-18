@@ -6,12 +6,14 @@ import { QuestionCard } from "components/QuestionCard";
 import { Categories } from "components/Categories";
 import { useAllCategoriesQuery } from "generated/graphql";
 import { UserCard } from "components/UserCard";
+import { useSession } from "next-auth/client";
 
 const Category = () => {
   const router = useRouter();
   const {
     data: { category: { questions } = {} } = {},
     loading,
+    refetch,
   } = useCategoryQuestionsQuery({
     variables: {
       categoryWhere: {
@@ -20,18 +22,29 @@ const Category = () => {
     },
   });
 
+  const [session] = useSession();
+
+  const totalQuestionsAnswered = questions
+    ?.map(({ answers }) =>
+      answers.filter((answer) => answer?.author?.id === session?.user?.id)
+    )
+    .flat()
+    .map(({ id }) => id);
+
   const { data: { categories } = {} } = useAllCategoriesQuery();
 
   return (
     <Layout title={`${router.query.category}`}>
       <div className="flex-1 max-w-6xl mx-auto mt-[88px]">
-        <div
-          style={{ gridTemplateColumns: "200px 1fr 200px" }}
-          className="flex flex-col h-full gap-3 xl:grid"
-        >
+        <div className="flex flex-col h-full gap-3 xl:grid xl:grid-cols-12">
           <Categories categories={categories} />
-          <div className="flex flex-col space-y-3">
-            <form className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0">
+          <div className="flex flex-col col-span-8 space-y-3">
+            <form
+              className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <input
                 type="search"
                 name="questionSearch"
@@ -57,7 +70,7 @@ const Category = () => {
               })
             )}
           </div>
-          <UserCard />
+          <UserCard answeredQuestions={totalQuestionsAnswered} />
         </div>
       </div>
     </Layout>

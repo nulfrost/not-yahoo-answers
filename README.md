@@ -1,41 +1,61 @@
-# TypeScript Next.js example
+# Not Yahoo Answers
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+Like many bored developers in quarantine I've decided to start project #483 with the insane amount of free time I have. I was never an avid user of Yahoo! Answers but as a young lad looking for answers on the internet it would show up sometimes. This project isn't meant to be a complete rebuild of the site as it is now but just something to do to pass the time as well as try out new libraries and features.
 
-## Deploy your own
+## Tech Stack
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+**Client:** React, TailwindCSS, Typescript, GraphQL
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+**Server:** Prisma, Apollo Server, Nexus
 
-## How to use it?
+## Run Locally
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Clone the project
 
 ```bash
-npx create-next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
+  git clone https://github.com/nulfrost/not-yahoo-answers.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Go to the project directory
 
-## Notes
-
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
+```bash
+  cd not-yahoo-answers
 ```
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+Install dependencies
 
+```bash
+  npm install
 ```
-npm install --save-dev @types/react @types/react-dom @types/node
+
+This project uses postgres as its database, to get up and running quickly I suggest using docker. You can use any method you like to install postgres though.
+
+```bash
+docker pull postgres
+docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=<your password> postgres
 ```
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+Then run the migrations and seed the database.
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+```bash
+npx prisma migrate dev
+npx prisma db seed --preview-feature
+```
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Finally run the project
+
+```bash
+npm run dev
+```
+
+## Environment Variables
+
+There is a sample environment variable file provided with the project, to get up and running you need to rename the file to just `.env` and fill out the values.
+
+## Running Tests
+
+TODO
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
