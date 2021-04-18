@@ -58,4 +58,4 @@ TODO
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/nulfrost/not-yahoo-answers/blob/main/LICENSE)
