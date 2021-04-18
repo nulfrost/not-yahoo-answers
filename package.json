@@ -8,7 +8,7 @@
     "commit": "git add . && cz",
     "migrate": "npx prisma migrate dev --name",
     "type-check": "tsc",
-    "generate": "graphql-codegen --config codegen.yml --watch",
+    "generate": "graphql-codegen --config codegen.yml",
     "prebuild": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only schema"
   },
   "dependencies": {

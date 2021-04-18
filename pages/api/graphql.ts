@@ -8,6 +8,7 @@ const cors = Cors();
 const server = new ApolloServer({
   schema,
   context,
+  playground: false,
 });
 
 export const config = {

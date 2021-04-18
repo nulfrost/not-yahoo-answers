@@ -8,6 +8,30 @@ import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { gql } from "@apollo/client";
+
+const query = gql`
+  query AllQuestions(
+    $questionsOrderBy: [QuestionOrderByInput!]
+    $questionsWhere: QuestionWhereInput
+  ) {
+    questions(orderBy: $questionsOrderBy, where: $questionsWhere) {
+      id
+      title
+      question
+      answers {
+        id
+        author {
+          id
+        }
+      }
+      category {
+        name
+      }
+      createdAt
+    }
+  }
+`;
 
 const New = ({ user }) => {
   const { data } = useAllCategoriesQuery();
@@ -41,6 +65,11 @@ const New = ({ user }) => {
                   },
                 },
               },
+              refetchQueries: [
+                {
+                  query,
+                },
+              ],
             })
               .then(() => setSubmitting(!submitting))
               .then(() => router.push("/"));
@@ -72,12 +101,12 @@ const New = ({ user }) => {
               rows={10}
               className="w-full mb-2 border border-purple-200 rounded resize-none xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
               placeholder="Try and be as descriptive as you can for the best results."
-              maxLength={1000}
+              maxLength={10000}
               onChange={(e) => setQuestion(e.target.value)}
             />
             <small className="self-end opacity-50">
               {" "}
-              {question.length} / 1000
+              {question.length} / 10,000
             </small>
           </div>
           <label htmlFor="category" className="text-xs font-bold uppercase">

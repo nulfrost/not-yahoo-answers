@@ -59,22 +59,6 @@ const IndexPage = () => {
               className="flex flex-wrap space-y-2 xl:flex-nowrap xl:space-x-2 xl:space-y-0"
               onSubmit={(e) => {
                 e.preventDefault();
-                refetch({
-                  questionsWhere: {
-                    OR: [
-                      {
-                        title: {
-                          contains: query,
-                        },
-                      },
-                      {
-                        question: {
-                          contains: query,
-                        },
-                      },
-                    ],
-                  },
-                });
               }}
             >
               <input
@@ -111,9 +95,13 @@ const IndexPage = () => {
                 <LoadingSkeleton />{" "}
               </>
             ) : (
-              questions?.map((question) => {
-                return <QuestionCard key={question.id} question={question} />;
-              })
+              questions
+                .filter((question) =>
+                  question?.title.toLowerCase().includes(query)
+                )
+                .map((question) => {
+                  return <QuestionCard key={question.id} question={question} />;
+                })
             )}
           </div>
           <UserCard answeredQuestions={totalQuestionsAnswered} />

@@ -229,6 +229,11 @@ export type CategoryCreateWithoutQuestionsInput = {
   name: Scalars['String'];
 };
 
+export type CategoryOrderByInput = {
+  id?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+};
+
 export type CategoryUpdateOneWithoutQuestionsInput = {
   create?: Maybe<CategoryCreateWithoutQuestionsInput>;
   connectOrCreate?: Maybe<CategoryCreateOrConnectWithoutQuestionsInput>;
@@ -437,6 +442,8 @@ export type QueryQuestionsArgs = {
 
 
 export type QueryCategoriesArgs = {
+  where?: Maybe<CategoryWhereInput>;
+  orderBy?: Maybe<Array<CategoryOrderByInput>>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<CategoryWhereUniqueInput>;

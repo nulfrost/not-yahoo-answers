@@ -7,9 +7,13 @@ import { Categories } from "components/Categories";
 import { useAllCategoriesQuery } from "generated/graphql";
 import { UserCard } from "components/UserCard";
 import { useSession } from "next-auth/client";
+import { useState } from "react";
 
 const Category = () => {
   const router = useRouter();
+
+  const [query, setQuery] = useState("");
+
   const {
     data: { category: { questions } = {} } = {},
     loading,
@@ -49,6 +53,7 @@ const Category = () => {
                 name="questionSearch"
                 className="w-full border border-purple-200 rounded text-md focus:outline-none focus:ring-purple-700 focus:ring-2"
                 placeholder="What are you looking for?"
+                onChange={(e) => setQuery(e.target.value.toLowerCase())}
               />
               <select
                 name="sort"
@@ -64,9 +69,13 @@ const Category = () => {
                 <LoadingSkeleton />{" "}
               </>
             ) : (
-              questions?.map((question) => {
-                return <QuestionCard key={question.id} question={question} />;
-              })
+              questions
+                .filter((question) =>
+                  question?.title.toLowerCase().includes(query)
+                )
+                .map((question) => {
+                  return <QuestionCard key={question.id} question={question} />;
+                })
             )}
           </div>
           <UserCard answeredQuestions={totalQuestionsAnswered} />
