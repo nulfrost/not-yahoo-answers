@@ -96,7 +96,7 @@ const IndexPage = () => {
               </>
             ) : (
               questions
-                .filter((question) =>
+                ?.filter((question) =>
                   question?.title.toLowerCase().includes(query)
                 )
                 .map((question) => {

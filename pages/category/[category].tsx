@@ -13,6 +13,7 @@ const Category = () => {
   const router = useRouter();
 
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState("newest");
 
   const {
     data: { category: { questions } = {} } = {},
@@ -59,6 +60,9 @@ const Category = () => {
                 name="sort"
                 id="sort"
                 className="w-full border border-purple-200 rounded xl:w-min xl:text-lg focus:outline-none focus:ring-purple-700 focus:ring-2"
+                onChange={(e) => {
+                  setSort(e.target.value);
+                }}
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
@@ -70,8 +74,15 @@ const Category = () => {
               </>
             ) : (
               questions
-                .filter((question) =>
+                ?.filter((question) =>
                   question?.title.toLowerCase().includes(query)
+                )
+                .sort((a, b) =>
+                  sort === "newest"
+                    ? // @ts-ignore
+                      new Date(b.createdAt) - new Date(a.createdAt)
+                    : // @ts-ignore
+                      new Date(a.createdAt) - new Date(b.createdAt)
                 )
                 .map((question) => {
                   return <QuestionCard key={question.id} question={question} />;
