@@ -1,6 +1,5 @@
 import { Layout } from "components/Layout";
 import { Categories } from "components/Categories";
-import { QuestionCard } from "components/QuestionCard";
 import { UserCard } from "components/UserCard";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ import {
 } from "generated/graphql";
 import { useSession } from "next-auth/client";
 import { LoadingSkeleton } from "components/LoadingSkeleton";
+import { QuestionList } from "components/QuestionList";
 
 const IndexPage = () => {
   const [toTop, setToTop] = useState(false);
@@ -95,13 +95,7 @@ const IndexPage = () => {
                 <LoadingSkeleton />{" "}
               </>
             ) : (
-              questions
-                ?.filter((question) =>
-                  question?.title.toLowerCase().includes(query)
-                )
-                .map((question) => {
-                  return <QuestionCard key={question.id} question={question} />;
-                })
+              <QuestionList questions={questions} query={query} />
             )}
           </div>
           <UserCard answeredQuestions={totalQuestionsAnswered} />

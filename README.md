@@ -8,24 +8,28 @@ Like many bored developers in quarantine I've decided to start project #483 with
 
 **Server:** Prisma, Apollo Server, Nexus
 
+## Environment Variables
+
+There is a sample environment variable file provided with the project, to get up and running you need to rename the file to just `.env` and fill out the values.
+
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/nulfrost/not-yahoo-answers.git
+git clone https://github.com/nulfrost/not-yahoo-answers.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd not-yahoo-answers
+cd not-yahoo-answers
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
 This project uses postgres as its database, to get up and running quickly I suggest using docker. You can use any method you like to install postgres though.
@@ -47,10 +51,6 @@ Finally run the project
 ```bash
 npm run dev
 ```
-
-## Environment Variables
-
-There is a sample environment variable file provided with the project, to get up and running you need to rename the file to just `.env` and fill out the values.
 
 ## Running Tests
 

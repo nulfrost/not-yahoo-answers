@@ -4,6 +4,10 @@ import { Provider } from "next-auth/client";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "lib/apolloClent";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  require("../mocks");
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState);
 
