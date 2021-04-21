@@ -55,6 +55,7 @@ const Category = () => {
                 className="w-full border border-purple-200 rounded text-md focus:outline-none focus:ring-purple-700 focus:ring-2"
                 placeholder="What are you looking for?"
                 onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                data-cy="question-filter"
               />
               <select
                 name="sort"
@@ -63,6 +64,7 @@ const Category = () => {
                 onChange={(e) => {
                   setSort(e.target.value);
                 }}
+                data-cy="question-sort"
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>

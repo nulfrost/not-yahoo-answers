@@ -11,6 +11,7 @@ export const QuestionCard = ({ question, ...props }) => {
     >
       <h2
         className="mb-5 text-sm font-bold uppercase duration-150 cursor-pointer hover:text-blue-500"
+        data-cy="question-title"
         onClick={() => router.push(`/question/${question.id}`)}
       >
         {question?.title}
@@ -20,7 +21,10 @@ export const QuestionCard = ({ question, ...props }) => {
         <small className="text-gray-500">
           <span>{question?.answers.length} answers</span> &bull;{" "}
           <Link href={`/category/${question?.category?.name}`}>
-            <a className="text-blue-400 hover:underline">
+            <a
+              className="text-blue-400 hover:underline"
+              data-cy="question-category"
+            >
               {question?.category?.name}
             </a>
           </Link>{" "}

@@ -10,7 +10,7 @@
     "type-check": "tsc",
     "generate": "graphql-codegen --config codegen.yml",
     "prebuild": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' --transpile-only schema",
-    "test": "jest"
+    "test": "npx cypress open"
   },
   "dependencies": {
     "@apollo/client": "^3.3.14",
@@ -38,11 +38,13 @@
     "@graphql-codegen/typescript": "1.21.1",
     "@graphql-codegen/typescript-operations": "1.17.15",
     "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@types/jest": "^26.0.22",
     "@types/micro-cors": "^0.1.1",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "autoprefixer": "^10.2.5",
+    "cypress": "^7.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "faker": "^5.5.3",
     "graphql-codegen-apollo-next-ssr": "^1.5.6",
