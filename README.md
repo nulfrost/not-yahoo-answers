@@ -54,7 +54,11 @@ npm run dev
 
 ## Running Tests
 
-TODO
+Tests are located in the `cypress` folder.
+
+```bash
+npm run test
+```
 
 ## License
 
